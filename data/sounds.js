@@ -1,0 +1,22 @@
+/* LISTEN: the sound map.
+   One entry per recording. file is relative to the site root. date is YYYY-MM-DD (from the old filenames).
+   description is required: every recording needs a written description (hearing diversity).
+   author and place may stay empty; they appear when filled. To add a recording, copy one block,
+   upload the MP3 into audio/listen/ and change the values. */
+window.WILDCARE_SOUNDS = [
+{"title": "Popularlma nel fienile", "lat": 44.2765, "lng": 11.17693, "file": "audio/listen/popularlma-nel-fienile-2023-06-17.mp3", "date": "2023-06-17", "duration": 454, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Bimbi Punto Luce", "lat": 45.49397, "lng": 9.11296, "file": "audio/listen/bimbi-punto-luce-2025-07-09.mp3", "date": "2025-07-09", "duration": 378, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Silence on Etna", "lat": 37.70376, "lng": 15.06818, "file": "audio/listen/silence-on-etna-2022-03-06.mp3", "date": "2022-03-06", "duration": 592, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Venice Walk", "lat": 45.42936, "lng": 12.35589, "file": "audio/listen/venice-walk-2022-11-19.mp3", "date": "2022-11-19", "duration": 563, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Angolo Cechov-Omodeo", "lat": 45.49235, "lng": 9.11681, "file": "audio/listen/angolo-cechov-omodeo-2025-06-18.mp3", "date": "2025-06-18", "duration": 400, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Supermarket Walk", "lat": 47.06924, "lng": 15.40242, "file": "audio/listen/supermarket-walk-2021-08-07.mp3", "date": "2021-08-07", "duration": 440, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "I suoni della tua strada", "lat": 45.49292, "lng": 9.11052, "file": "audio/listen/i-suoni-della-tua-strada-2025-07-22.mp3", "date": "2025-07-22", "duration": 358, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Lampione", "lat": 45.49261, "lng": 9.11151, "file": "audio/listen/lampione-2025-07-11.mp3", "date": "2025-07-11", "duration": 346, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Helsinki Walk", "lat": 60.1681, "lng": 24.95726, "file": "audio/listen/helsinki-walk-2024-10-03.mp3", "date": "2024-10-03", "duration": 591, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Grilli Mirror", "lat": 45.49173, "lng": 9.11652, "file": "audio/listen/grilli-mirror-2025-09-07.mp3", "date": "2025-09-07", "duration": 332, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Complesso Monte Amiata 1", "lat": 45.49737, "lng": 9.10071, "file": "audio/listen/complesso-monte-amiata-1-2025-05-25.mp3", "date": "2025-05-25", "duration": 340, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Chiatte", "lat": 44.41018, "lng": 8.9229, "file": "audio/listen/chiatte-2022-07-24.mp3", "date": "2022-07-24", "duration": 235, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Aleksandra In The Rain", "lat": 47.07675, "lng": 15.43229, "file": "audio/listen/aleksandra-in-the-rain-2021-08-06.mp3", "date": "2021-08-06", "duration": 216, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Parco Dei Triangoli", "lat": 45.49073, "lng": 9.11606, "file": "audio/listen/parco-dei-triangoli-2025-05-25.mp3", "date": "2025-05-25", "duration": 182, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"},
+{"title": "Complesso Monte Amiata 2", "lat": 45.49877, "lng": 9.10076, "file": "audio/listen/complesso-monte-amiata-2-2025-05-25.mp3", "date": "2025-05-25", "duration": 100, "origin": "Passæggi Sonori", "author": "", "place": "", "description": "[text description of this recording]"}
+];

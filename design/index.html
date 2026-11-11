@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design. WILD:CARE</title>
+<meta name="description" content="Compose a graphic score from seven pieces of the WILD:CARE Listening Kit.">
+
+<meta property="og:title" content="Design. WILD:CARE">
+<meta property="og:description" content="Compose a graphic score from seven pieces of the WILD:CARE Listening Kit.">
+<link rel="icon" href="../assets/img/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/prompt-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap site-head">
+<a class="logo" href="../"><img src="../assets/img/wildcare-logo.png" alt="WILD:CARE, home" width="70" height="52"></a>
+<nav class="nav" aria-label="Main"><a class="dim" href="../walk/">Walk</a><a class="dim" href="../inspire/">Inspire</a><a class="dim" href="../listen/">Listen</a><a class="dim" href="../design/" aria-current="page">Design</a><a class="dim" href="../care/">Care</a><span class="sep" aria-hidden="true"></span><a href="../method/">Method</a><a href="../pilots/">Pilots</a><a href="../partners/">Partners</a></nav>
+</header>
+<hr class="fold">
+<main id="main" class="wrap">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 17L10 3l7 14z"/><path d="M10 3v14" stroke-dasharray="2 2"/></svg><span>Design</span></p><div class="content">
+<h1 class="page-title"><span class="letter" aria-hidden="true">D</span><span class="name">Design</span><span class="verb">to make</span></h1>
+<figure class="kit-quote " data-sheet="a-map-with-no-north"><blockquote style="margin:0"><p class="kit-line">A grid. A north arrow. A legend. A view from above. They are not the truth.</p></blockquote><figcaption class="kit-src">from <span class="kit-title">A Map With No North</span>, Listening Kit</figcaption></figure>
+<p class="measure">Seven pieces, seven worksheets. Each piece draws one sheet from its family in the Kit. Arrange them in any order: the score you leave can be read many ways. Tap a piece to read its sheet, and save the result as an image.</p>
+</div></section>
+<div class="design">
+ <div>
+  <canvas id="board" class="board" role="img" aria-label="Tangram board with seven coloured pieces. The list of pieces next to it can move them by keyboard."></canvas>
+  <div class="btn-row" style="margin-top:14px"><button type="button" class="btn ghost" id="rotate" data-needs-sel disabled>Rotate</button><button type="button" class="btn ghost" id="flip" data-needs-sel disabled>Flip</button><button type="button" class="btn ghost" id="scatter">Scatter the pieces</button><button type="button" class="btn" id="save">Save as image</button></div>
+ </div>
+ <div>
+  <h2 style="font-size:20px">The pieces</h2>
+  <ul class="pieces" id="pieces"></ul>
+  <p class="help" id="keys">With a keyboard: Tab to a piece, move it with the arrow keys (with Shift for longer steps), R rotates, F flips. Double-tap a piece on the board to rotate it.</p>
+  <div class="detail" id="detail" aria-live="polite"></div>
+ </div>
+</div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="eu-box"><img src="../assets/eu/co-funded-by-the-eu.png" alt="Co-funded by the European Union" width="250" height="52" onerror="this.parentNode.hidden=true"></div>
+<div class="legal"><p>Co-funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agenzia Italiana per la Gioventù. Neither the European Union nor the granting authority can be held responsible for them.</p>
+<p>Erasmus+ KA210-YOU. Grant agreement 2025-2-IT03-KA210-YOU-000375840.</p>
+<p class="links"><a href="../partners/#contact">Contact</a></p></div>
+</div></footer>
+<script src="../data/worksheets.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/design.js"></script>
+</body>
+</html>
