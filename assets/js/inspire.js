@@ -11,7 +11,6 @@
     var f = WC.famById[s.family];
     out.innerHTML =
       '<article class="sheet' + (animate ? ' unfold' : '') + '" style="--paper:' + f.color + '" aria-labelledby="drawn-title">' +
-      WC.folds(f.fold) +
       '<p class="fam">' + WC.esc(f.name) + '</p>' +
       '<h2 class="title" id="drawn-title">' + WC.esc(s.title_en) + '</h2>' +
       '<p class="line">' + WC.esc(s.line_en) + '</p>' +

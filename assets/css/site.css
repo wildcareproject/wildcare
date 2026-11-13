@@ -24,6 +24,7 @@ a:hover{text-decoration-thickness:2px}
 p{margin:0 0 1em}
 h1,h2,h3{line-height:1.2;margin:0 0 .5em;font-weight:600}
 [lang="it"]{font-style:normal}
+[hidden]{display:none!important}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .skip{position:absolute;left:8px;top:-60px;background:var(--ink);color:var(--ivory);padding:10px 16px;z-index:1000}
 .skip:focus{top:8px}
@@ -191,3 +192,9 @@ h1,h2,h3{line-height:1.2;margin:0 0 .5em;font-weight:600}
 .site-foot .legal{flex:1 1 420px;min-width:0;margin:0;font-size:14px;line-height:1.55}
 .site-foot .legal p{margin:0 0 .7em}
 .site-foot .links{font-size:15px}
+
+/* method: W I L D on one line on desktop */
+.dims{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px 28px}
+.dims h3{font-size:20px;margin:6px 0 4px}
+.dims p{margin:0;font-size:16px}
+@media (max-width:760px){.dims{grid-template-columns:repeat(2,minmax(0,1fr))}}

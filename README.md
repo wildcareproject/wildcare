@@ -22,7 +22,7 @@ Every change made through GitHub is kept as a version and can be undone.
 
 Everything in **[square brackets]** is missing information. On GitHub, press `t`, or use the search box
 of the repository with `[`, to find them. Current list:
-- `partners/index.html`: three partner websites, the project email (two places on one line)
+- `partners/index.html`: three partner websites
 - `pilots/index.html`: Berlin dates and places
 - `walk/index.html`, `care/index.html`: opening dates, the Care contribution link
 - `kit/index.html`: card deck date, WILD PROBE link
@@ -36,7 +36,7 @@ from the European Commission's visual identity page and upload it as
 
 Open the file on GitHub, click the pencil, change it, click **Commit changes**. The site updates in about a minute.
 
-- **Add a walk:** upload the MP3 into `audio/walks/`, then add one block to `data/walks.js` (the example is inside the file).
+- **Add a walk:** upload the MP3 into `audio/walks/`, then copy one line in `data/walks.js` and change file, place, author and year.
 - **Add a recording to the map:** upload the MP3 into `audio/listen/`, copy one block in `data/sounds.js`, change the values.
 - **English worksheet texts arrive:** replace `title_en` and `line_en` in `data/worksheets.js`. The site uses them everywhere at once.
 - **Oliveros permission granted:** set `"oliveros": false` on Native and Environmental Dialogue, and add their `line_it`/`line_en`.

@@ -6,15 +6,15 @@
   var empty = document.getElementById('walk-empty'), player = document.getElementById('walk-player'), list = document.getElementById('walk-list');
   if (!walks.length) { empty.hidden = false; return; }
   player.hidden = false; document.getElementById('walk-all').hidden = false;
+  function credit(w) { return 'Recorded by ' + w.author + ', ' + w.year; }
   list.innerHTML = walks.map(function (w) {
-    return '<li><p style="margin:0;font-weight:600">' + WC.esc(w.author) + '</p><p style="margin:0 0 6px;font-size:16px">' + WC.esc(w.place) + ', ' + fmt(w.date) + '</p><p style="margin:0">' + WC.esc(w.description) + '</p></li>';
+    return '<li><p style="margin:0;font-weight:600">' + WC.esc(w.place) + '</p><p style="margin:0;font-size:16px">' + WC.esc(credit(w)) + '</p></li>';
   }).join('');
 
   var startBtn = document.getElementById('walk-start'), nextBtn = document.getElementById('walk-next'), pauseBtn = document.getElementById('walk-pause');
-  var who = document.getElementById('now-who'), when = document.getElementById('now-when'), desc = document.getElementById('now-desc');
+  var who = document.getElementById('now-who'), when = document.getElementById('now-when');
   var ctx = null, slots = [], cur = -1, bag = [], fading = false, paused = false;
 
-  function fmt(d) { var x = new Date(d + 'T12:00:00'); return isNaN(x) ? d : x.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
   function mk() {
     var a = new Audio(); a.preload = 'auto'; a.setAttribute('data-chain', ''); document.body.appendChild(a); a.hidden = true;
     var s = { el: a, gain: null };
@@ -37,7 +37,7 @@
     ramp(s, 1, prev ? FADE : 1.5);
     if (prev) { ramp(prev, 0, FADE); setTimeout(function () { if (slots[cur] !== prev) prev.el.pause(); }, FADE * 1000 + 200); }
     cur = ni;
-    who.textContent = w.author; when.textContent = w.place + ', ' + fmt(w.date); desc.textContent = w.description;
+    who.textContent = w.place; when.textContent = credit(w);
     setTimeout(function () { fading = false; }, FADE * 1000);
   }
   startBtn.addEventListener('click', function () {
