@@ -36,11 +36,20 @@ from the European Commission's visual identity page and upload it as
 
 Open the file on GitHub, click the pencil, change it, click **Commit changes**. The site updates in about a minute.
 
-- **Add a walk:** upload the MP3 into `audio/walks/`, then copy one line in `data/walks.js` and change file, place, author and year.
+- **Add a walk:** upload the MP3 into `audio/walks/`, then copy one line in `data/walks.js` and change file, place and year. Walks are anonymous.
 - **Add a recording to the map:** upload the MP3 into `audio/listen/`, copy one block in `data/sounds.js`, change the values.
 - **English worksheet texts arrive:** replace `title_en` and `line_en` in `data/worksheets.js`. The site uses them everywhere at once.
 - **Oliveros permission granted:** set `"oliveros": false` on Native and Environmental Dialogue, and add their `line_it`/`line_en`.
 - Keep quotes, commas and brackets exactly as they are. If a page goes blank after an edit, the last commit broke the punctuation: open the file's **History** and restore the previous version.
+
+## CARE (the soundscape)
+
+- `care/corpus.json` is the list of every sound in the soundscape. The drop box adds and removes lines itself;
+  you only touch it to remove a sound by hand (delete its whole `{ … }` block and the comma before it).
+- `audio/care/seed/` holds the 54 starting sounds, rendered from the recordings already on the site
+  (each one as texture, material and sediment). `audio/care/contributed/` fills up by itself.
+- `data/care-config.js` holds the drop box address. Empty = giving is closed, the soundscape still plays.
+- Setting up the drop box: see CARE-SETUP.md (delivered with the drop box code).
 
 ## Releasing the Listening Kit
 

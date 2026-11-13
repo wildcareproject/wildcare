@@ -1,0 +1,542 @@
+[
+ {
+  "id": "seed-popularlma-nel-fienile-texture",
+  "file": "audio/care/seed/popularlma-nel-fienile-texture.mp3",
+  "title": "Popularlma nel fienile",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-popularlma-nel-fienile-material",
+  "file": "audio/care/seed/popularlma-nel-fienile-material.mp3",
+  "title": "Popularlma nel fienile",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-popularlma-nel-fienile-sediment",
+  "file": "audio/care/seed/popularlma-nel-fienile-sediment.mp3",
+  "title": "Popularlma nel fienile",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-bimbi-punto-luce-texture",
+  "file": "audio/care/seed/bimbi-punto-luce-texture.mp3",
+  "title": "Bimbi Punto Luce",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-bimbi-punto-luce-material",
+  "file": "audio/care/seed/bimbi-punto-luce-material.mp3",
+  "title": "Bimbi Punto Luce",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-bimbi-punto-luce-sediment",
+  "file": "audio/care/seed/bimbi-punto-luce-sediment.mp3",
+  "title": "Bimbi Punto Luce",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-silence-on-etna-texture",
+  "file": "audio/care/seed/silence-on-etna-texture.mp3",
+  "title": "Silence on Etna",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-silence-on-etna-material",
+  "file": "audio/care/seed/silence-on-etna-material.mp3",
+  "title": "Silence on Etna",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-silence-on-etna-sediment",
+  "file": "audio/care/seed/silence-on-etna-sediment.mp3",
+  "title": "Silence on Etna",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-venice-walk-texture",
+  "file": "audio/care/seed/venice-walk-texture.mp3",
+  "title": "Venice Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-venice-walk-material",
+  "file": "audio/care/seed/venice-walk-material.mp3",
+  "title": "Venice Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-venice-walk-sediment",
+  "file": "audio/care/seed/venice-walk-sediment.mp3",
+  "title": "Venice Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-angolo-cechov-omodeo-texture",
+  "file": "audio/care/seed/angolo-cechov-omodeo-texture.mp3",
+  "title": "Angolo Cechov-Omodeo",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-angolo-cechov-omodeo-material",
+  "file": "audio/care/seed/angolo-cechov-omodeo-material.mp3",
+  "title": "Angolo Cechov-Omodeo",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-angolo-cechov-omodeo-sediment",
+  "file": "audio/care/seed/angolo-cechov-omodeo-sediment.mp3",
+  "title": "Angolo Cechov-Omodeo",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-supermarket-walk-texture",
+  "file": "audio/care/seed/supermarket-walk-texture.mp3",
+  "title": "Supermarket Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-supermarket-walk-material",
+  "file": "audio/care/seed/supermarket-walk-material.mp3",
+  "title": "Supermarket Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-supermarket-walk-sediment",
+  "file": "audio/care/seed/supermarket-walk-sediment.mp3",
+  "title": "Supermarket Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-i-suoni-della-tua-strada-texture",
+  "file": "audio/care/seed/i-suoni-della-tua-strada-texture.mp3",
+  "title": "I suoni della tua strada",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-i-suoni-della-tua-strada-material",
+  "file": "audio/care/seed/i-suoni-della-tua-strada-material.mp3",
+  "title": "I suoni della tua strada",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-i-suoni-della-tua-strada-sediment",
+  "file": "audio/care/seed/i-suoni-della-tua-strada-sediment.mp3",
+  "title": "I suoni della tua strada",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-lampione-texture",
+  "file": "audio/care/seed/lampione-texture.mp3",
+  "title": "Lampione",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-lampione-material",
+  "file": "audio/care/seed/lampione-material.mp3",
+  "title": "Lampione",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-lampione-sediment",
+  "file": "audio/care/seed/lampione-sediment.mp3",
+  "title": "Lampione",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-helsinki-walk-texture",
+  "file": "audio/care/seed/helsinki-walk-texture.mp3",
+  "title": "Helsinki Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-helsinki-walk-material",
+  "file": "audio/care/seed/helsinki-walk-material.mp3",
+  "title": "Helsinki Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-helsinki-walk-sediment",
+  "file": "audio/care/seed/helsinki-walk-sediment.mp3",
+  "title": "Helsinki Walk",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-grilli-mirror-texture",
+  "file": "audio/care/seed/grilli-mirror-texture.mp3",
+  "title": "Grilli Mirror",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-grilli-mirror-material",
+  "file": "audio/care/seed/grilli-mirror-material.mp3",
+  "title": "Grilli Mirror",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-grilli-mirror-sediment",
+  "file": "audio/care/seed/grilli-mirror-sediment.mp3",
+  "title": "Grilli Mirror",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-complesso-monte-amiata-1-texture",
+  "file": "audio/care/seed/complesso-monte-amiata-1-texture.mp3",
+  "title": "Complesso Monte Amiata 1",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-complesso-monte-amiata-1-material",
+  "file": "audio/care/seed/complesso-monte-amiata-1-material.mp3",
+  "title": "Complesso Monte Amiata 1",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-complesso-monte-amiata-1-sediment",
+  "file": "audio/care/seed/complesso-monte-amiata-1-sediment.mp3",
+  "title": "Complesso Monte Amiata 1",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-chiatte-texture",
+  "file": "audio/care/seed/chiatte-texture.mp3",
+  "title": "Chiatte",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-chiatte-material",
+  "file": "audio/care/seed/chiatte-material.mp3",
+  "title": "Chiatte",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-chiatte-sediment",
+  "file": "audio/care/seed/chiatte-sediment.mp3",
+  "title": "Chiatte",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-aleksandra-in-the-rain-texture",
+  "file": "audio/care/seed/aleksandra-in-the-rain-texture.mp3",
+  "title": "Aleksandra In The Rain",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-aleksandra-in-the-rain-material",
+  "file": "audio/care/seed/aleksandra-in-the-rain-material.mp3",
+  "title": "Aleksandra In The Rain",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-aleksandra-in-the-rain-sediment",
+  "file": "audio/care/seed/aleksandra-in-the-rain-sediment.mp3",
+  "title": "Aleksandra In The Rain",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-parco-dei-triangoli-texture",
+  "file": "audio/care/seed/parco-dei-triangoli-texture.mp3",
+  "title": "Parco Dei Triangoli",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-parco-dei-triangoli-material",
+  "file": "audio/care/seed/parco-dei-triangoli-material.mp3",
+  "title": "Parco Dei Triangoli",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-parco-dei-triangoli-sediment",
+  "file": "audio/care/seed/parco-dei-triangoli-sediment.mp3",
+  "title": "Parco Dei Triangoli",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-complesso-monte-amiata-2-texture",
+  "file": "audio/care/seed/complesso-monte-amiata-2-texture.mp3",
+  "title": "Complesso Monte Amiata 2",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-complesso-monte-amiata-2-material",
+  "file": "audio/care/seed/complesso-monte-amiata-2-material.mp3",
+  "title": "Complesso Monte Amiata 2",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-complesso-monte-amiata-2-sediment",
+  "file": "audio/care/seed/complesso-monte-amiata-2-sediment.mp3",
+  "title": "Complesso Monte Amiata 2",
+  "credit": "Passæggi Sonori archive",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-genoa-texture",
+  "file": "audio/care/seed/walk-genoa-texture.mp3",
+  "title": "Walk, Genoa",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-genoa-material",
+  "file": "audio/care/seed/walk-genoa-material.mp3",
+  "title": "Walk, Genoa",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-genoa-sediment",
+  "file": "audio/care/seed/walk-genoa-sediment.mp3",
+  "title": "Walk, Genoa",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-venice-texture",
+  "file": "audio/care/seed/walk-venice-texture.mp3",
+  "title": "Walk, Venice",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-venice-material",
+  "file": "audio/care/seed/walk-venice-material.mp3",
+  "title": "Walk, Venice",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-venice-sediment",
+  "file": "audio/care/seed/walk-venice-sediment.mp3",
+  "title": "Walk, Venice",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-helsinki-texture",
+  "file": "audio/care/seed/walk-helsinki-texture.mp3",
+  "title": "Walk, Helsinki",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "texture",
+  "dur": 40.0,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-helsinki-material",
+  "file": "audio/care/seed/walk-helsinki-material.mp3",
+  "title": "Walk, Helsinki",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "material",
+  "dur": 59.3,
+  "added": "2026-11-13T00:00:00Z"
+ },
+ {
+  "id": "seed-walk-helsinki-sediment",
+  "file": "audio/care/seed/walk-helsinki-sediment.mp3",
+  "title": "Walk, Helsinki",
+  "credit": "WILD:CARE walks",
+  "origin": "seed",
+  "category": "sediment",
+  "dur": 111.6,
+  "added": "2026-11-13T00:00:00Z"
+ }
+]

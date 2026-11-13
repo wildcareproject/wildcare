@@ -6,7 +6,7 @@
   var empty = document.getElementById('walk-empty'), player = document.getElementById('walk-player'), list = document.getElementById('walk-list');
   if (!walks.length) { empty.hidden = false; return; }
   player.hidden = false; document.getElementById('walk-all').hidden = false;
-  function credit(w) { return 'Recorded by ' + w.author + ', ' + w.year; }
+  function credit(w) { return 'Recorded in ' + w.year; }
   list.innerHTML = walks.map(function (w) {
     return '<li><p style="margin:0;font-weight:600">' + WC.esc(w.place) + '</p><p style="margin:0;font-size:16px">' + WC.esc(credit(w)) + '</p></li>';
   }).join('');

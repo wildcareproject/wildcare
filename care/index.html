@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Care. WILD:CARE</title>
-<meta name="description" content="Give a sound to a soundscape that keeps changing, with your name on it.">
+<meta name="description" content="A soundscape that is always playing, made of the sounds people give it.">
 
 <meta property="og:title" content="Care. WILD:CARE">
-<meta property="og:description" content="Give a sound to a soundscape that keeps changing, with your name on it.">
+<meta property="og:description" content="A soundscape that is always playing, made of the sounds people give it.">
 <link rel="icon" href="../assets/img/favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/prompt-light.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,8 +24,31 @@
 <section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="8" cy="10.5" r="5"/><circle cx="13" cy="10.5" r="5"/></svg><span>Care</span></p><div class="content">
 <h1 class="page-title"><span class="letter" aria-hidden="true">C</span><span class="name">Care</span><span class="verb">to give</span></h1>
 <figure class="kit-quote " data-sheet="a-sound-as-a-gift"><blockquote style="margin:0"><p class="kit-line">Most sounds exist for no one in particular. This one does.</p></blockquote><figcaption class="kit-src">from <span class="kit-title">A Sound as a Gift</span>, Listening Kit</figcaption></figure>
-<p class="measure">Give a sound. It joins a soundscape that keeps changing as new sounds arrive, and your name stays with it. What is playing is always written on the page, so the soundscape can be read as well as heard.</p>
-<p class="soon">Opens [date] <span>[link to contribute a sound]</span></p>
+<p class="measure">A soundscape that is always playing, made of the sounds people give it. Everyone who listens at the same moment hears the same thing. New sounds arrive in the foreground; with time they sink, slower and darker, into the ground of the piece. What is sounding is always written below.</p>
+<div class="player care-player">
+ <div class="btn-row"><button type="button" class="btn" id="care-start">Listen</button><button type="button" class="btn ghost" id="care-stop" hidden>Stop</button></div>
+ <p id="care-status" class="help" aria-live="polite"></p>
+ <h2 class="vh">Sounding now</h2>
+ <ul class="care-now" id="care-now" aria-live="off"></ul>
+</div>
+</div></section>
+<hr class="fold">
+<section class="row" id="give"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="8" cy="10.5" r="5"/><circle cx="13" cy="10.5" r="5"/></svg><span>Give a sound</span></p><div class="content">
+<div class="give-soon" hidden><p class="soon">Opens soon <span>Giving a sound will be possible from this page.</span></p></div>
+<div class="give-open">
+ <p class="measure">Record up to 30 seconds, or choose a file. The sound becomes part of the soundscape for everyone, about half an hour after you send it.</p>
+ <div class="btn-row"><button type="button" class="btn" id="give-rec">Record</button>
+ <label class="btn ghost filebtn">Choose a file<input type="file" id="give-file" accept="audio/*" class="vh"></label></div>
+ <p id="give-msg" class="help" aria-live="polite"></p>
+ <div id="give-ready" hidden>
+  <audio id="give-preview" controls></audio>
+  <p id="give-heard" class="measure"></p>
+  <p class="field"><label for="give-title">Name this sound <span>(optional)</span></label><input id="give-title" maxlength="40" autocomplete="off"></p>
+  <p class="field"><label for="give-credit">Your name, as it should appear <span>(optional)</span></label><input id="give-credit" maxlength="40" autocomplete="off"></p>
+  <p class="check"><input type="checkbox" id="give-consent"><label for="give-consent">I recorded this sound or have the right to share it, and I agree that it becomes part of a public soundscape on this website. Anyone audible in it has agreed.</label></p>
+  <button type="button" class="btn" id="give-send" disabled>Give this sound</button>
+ </div>
+</div>
 </div></section>
 </main>
 <footer class="site-foot"><div class="wrap">
@@ -34,6 +57,6 @@
 <p>Erasmus+ KA210-YOU. Grant agreement 2025-2-IT03-KA210-YOU-000375840.</p>
 <p class="links"><a href="../partners/#contact">Contact</a></p></div>
 </div></footer>
-<script src="../data/worksheets.js"></script><script src="../assets/js/site.js"></script>
+<script src="../data/worksheets.js"></script><script src="../data/care-config.js"></script><script src="../assets/vendor/lamejs-1.2.1/lame.min.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/care-score.js"></script><script src="../assets/js/care.js"></script><script src="../assets/js/care-give.js"></script>
 </body>
 </html>
