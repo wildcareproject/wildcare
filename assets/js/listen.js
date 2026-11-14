@@ -5,15 +5,19 @@
   function fmt(d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
   function dur(s) { var m = Math.floor(s / 60), r = s % 60; return m + ' min' + (r ? ' ' + r + ' s' : ''); }
   function meta(s) {
-    var bits = [s.place, fmt(s.date), dur(s.duration)].filter(Boolean).join(', ');
-    return bits + '. ' + (s.author ? 'Recorded by ' + WC.esc(s.author) + '. ' : '') + 'From the ' + WC.esc(s.origin) + ' archive.';
+    var bits = [s.place, s.date ? fmt(s.date) : '', s.duration ? dur(s.duration) : ''].filter(Boolean).map(WC.esc).join(', ');
+    return bits + (bits ? '.' : '') + (s.author ? ' Recorded by ' + WC.esc(s.author) + '.' : '');
   }
-  var order = sounds.slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
+  if (!sounds.length) {
+    document.getElementById('listen-empty').hidden = false; document.getElementById('consent').hidden = true;
+    document.getElementById('listen-list').hidden = true; return;
+  }
+  var order = sounds.slice().sort(function (a, b) { return (a.date || '') < (b.date || '') ? 1 : -1; });
   ul.innerHTML = order.map(function (s, i) {
     var id = 'rec-' + i;
     s._id = id;
     return '<li id="' + id + '"><h3>' + WC.esc(s.title) + '</h3><p class="meta">' + meta(s) + '</p>' +
-      '<p>' + WC.esc(s.description) + '</p>' +
+      (s.description ? '<p>' + WC.esc(s.description) + '</p>' : '') +
       '<audio controls preload="none" src="' + WC.esc(WC.base + s.file) + '" aria-label="Play ' + WC.esc(s.title) + '"></audio>' +
       '<p style="margin:6px 0 0"><button type="button" class="textbtn show-on-map" data-i="' + i + '" hidden>Show on the map</button></p></li>';
   }).join('');
@@ -39,7 +43,7 @@
       var icon = L.divIcon({ className: '', html: '<div class="pin"></div>', iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10] });
       order.forEach(function (s) {
         var m = L.marker([s.lat, s.lng], { icon: icon, title: s.title, alt: s.title, keyboard: true }).addTo(map);
-        m.bindPopup('<strong>' + WC.esc(s.title) + '</strong><br>' + fmt(s.date) + '<br>' + WC.esc(s.description) +
+        m.bindPopup('<strong>' + WC.esc(s.title) + '</strong>' + (s.date ? '<br>' + fmt(s.date) : '') + (s.description ? '<br>' + WC.esc(s.description) : '') +
           '<br><audio controls preload="none" src="' + WC.esc(WC.base + s.file) + '"></audio>');
         markers.push(m);
       });

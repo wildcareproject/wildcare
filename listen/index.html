@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Listen. WILD:CARE</title>
-<meta name="description" content="A sound map of recordings from the Passæggi Sonori archive, each one described in words.">
+<meta name="description" content="Recordings pinned on a map where they were made.">
 
 <meta property="og:title" content="Listen. WILD:CARE">
-<meta property="og:description" content="A sound map of recordings from the Passæggi Sonori archive, each one described in words.">
+<meta property="og:description" content="Recordings pinned on a map where they were made.">
 <link rel="icon" href="../assets/img/favicon-32.png" type="image/png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preload" href="../assets/fonts/prompt-light.woff2" as="font" type="font/woff2" crossorigin>
@@ -24,12 +24,13 @@
 <section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 6a6 6 0 0 1 0 9M5 3.5a10 10 0 0 1 0 14"/><circle cx="12.5" cy="10.5" r="2"/></svg><span>Listen</span></p><div class="content">
 <h1 class="page-title"><span class="letter" aria-hidden="true">L</span><span class="name">Listen</span><span class="verb">to listen</span></h1>
 <figure class="kit-quote " data-sheet="what-the-sound-knows"><blockquote style="margin:0"><p class="kit-line">Choose a sound. Listen to it until you know something about the world it comes from.</p></blockquote><figcaption class="kit-src">from <span class="kit-title">What the Sound Knows</span>, Listening Kit</figcaption></figure>
-<p class="measure">Recordings from the Passæggi Sonori archive, where WILD:CARE began. Recordings by WILD:CARE participants will join them. Every recording is also written down, for anyone who listens with the eyes.</p>
+<p class="measure">Recordings pinned where they were made. Play them from the list, or open the map.</p>
+<div id="listen-empty" hidden><p class="soon">The first recordings are being placed on the map</p></div>
 <div class="consent" id="consent"><p>The map draws its images from OpenStreetMap's servers, which receive your IP address when it loads. The list below holds the same recordings.</p><button type="button" class="btn" id="map-load">Show the map</button></div>
 </div></section>
 <div id="map" role="region" aria-label="Map of the recordings"></div>
 <hr class="fold">
-<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 6a6 6 0 0 1 0 9M5 3.5a10 10 0 0 1 0 14"/><circle cx="12.5" cy="10.5" r="2"/></svg><span>The recordings</span></p><div class="content"><ul class="sounds" id="sounds"></ul></div></section>
+<div id="listen-list"><section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 6a6 6 0 0 1 0 9M5 3.5a10 10 0 0 1 0 14"/><circle cx="12.5" cy="10.5" r="2"/></svg><span>The recordings</span></p><div class="content"><ul class="sounds" id="sounds"></ul></div></section></div>
 </main>
 <footer class="site-foot"><div class="wrap">
 <div class="eu-box"><img src="../assets/eu/co-funded-by-the-eu.png" alt="Co-funded by the European Union" width="250" height="52" onerror="this.parentNode.hidden=true"></div>

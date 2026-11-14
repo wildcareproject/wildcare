@@ -75,7 +75,8 @@
       var credit = e.credit ? ', ' + WC.esc(e.credit) : '';
       return '<li><b>' + WC.esc(e.title || 'Untitled sound') + '</b>' + credit + '. <span class="as">As ' + e.layer + '.</span></li>';
     }).join('');
-    if (html !== lastNow) { nowEl.innerHTML = html || '<li>Silence, for a moment.</li>'; lastNow = html; }
+    if (!html) html = corpus.length ? '<li>Silence, for a moment.</li>' : '<li>The soundscape is gathering its first sounds.</li>';
+    if (html !== lastNow) { nowEl.innerHTML = html; lastNow = html; }
   }
   function start() {
     var AC = window.AudioContext || window.webkitAudioContext;

@@ -12,8 +12,8 @@ Every change made through GitHub is kept as a version and can be undone.
 | `method/` `pilots/` `partners/` | Information pages (contact is on `partners/`) |
 | `kit/` | The Listening Kit. **Built but not linked** and hidden from search engines until release |
 | `data/worksheets.js` | All 49 worksheets: titles, the one line shown on the site, players, PDF paths |
-| `data/sounds.js` | The LISTEN sound map |
-| `data/walks.js` | The WALK chain (empty for now) |
+| `data/sounds.js` | The LISTEN sound map (managed from `manage/`) |
+| `data/walks.js` | The WALK chain (managed from `manage/`) |
 | `audio/listen/` `audio/walks/` | Sound files (delivered as a separate zip) |
 | `assets/` | Styles, scripts, fonts (Prompt, stored here), images, Leaflet 1.9.4 |
 | `assets/eu/` | Put the official EU emblem here (see below) |
@@ -32,12 +32,19 @@ of the repository with `[`, to find them. Current list:
 from the European Commission's visual identity page and upload it as
 `assets/eu/co-funded-by-the-eu.png`. Until then the footer shows the funding text only.
 
+## Sounds: the sound manager
+
+All sound files are managed at **wildcareproject.org/manage/** (not linked from the site, hidden from search engines).
+Connect once with a GitHub token (instructions on the page), then:
+- drop any sound files: they are converted in the browser to MP3 (128 kbps stereo, 80 kbps mono);
+- for each one choose **Walk** (place, year), **Listen** (title, pin on the map, optional place, date, description)
+  or **Care** (rendered as texture, material and/or sediment), then **Publish**: everything goes up in one save;
+- edit, move pins, delete sounds, and delete files that nothing uses any more.
+
 ## Everyday edits (all in the browser)
 
 Open the file on GitHub, click the pencil, change it, click **Commit changes**. The site updates in about a minute.
 
-- **Add a walk:** upload the MP3 into `audio/walks/`, then copy one line in `data/walks.js` and change file, place and year. Walks are anonymous.
-- **Add a recording to the map:** upload the MP3 into `audio/listen/`, copy one block in `data/sounds.js`, change the values.
 - **English worksheet texts arrive:** replace `title_en` and `line_en` in `data/worksheets.js`. The site uses them everywhere at once.
 - **Oliveros permission granted:** set `"oliveros": false` on Native and Environmental Dialogue, and add their `line_it`/`line_en`.
 - Keep quotes, commas and brackets exactly as they are. If a page goes blank after an edit, the last commit broke the punctuation: open the file's **History** and restore the previous version.
@@ -46,8 +53,7 @@ Open the file on GitHub, click the pencil, change it, click **Commit changes**. 
 
 - `care/corpus.json` is the list of every sound in the soundscape. The drop box adds and removes lines itself;
   you only touch it to remove a sound by hand (delete its whole `{ … }` block and the comma before it).
-- `audio/care/seed/` holds the 54 starting sounds, rendered from the recordings already on the site
-  (each one as texture, material and sediment). `audio/care/contributed/` fills up by itself.
+- `audio/care/curated/` holds the sounds added from the sound manager; `audio/care/contributed/` fills up by itself with visitors' sounds.
 - `data/care-config.js` holds the drop box address. Empty = giving is closed, the soundscape still plays.
 - Setting up the drop box: see CARE-SETUP.md (delivered with the drop box code).
 

@@ -27,8 +27,8 @@
   function block(corpus, b) {
     var t0 = b * BLOCK, R = rng(h32('wildcare-care:' + b)), ev = [];
     var C = corpus.filter(function (s) { return addedAt(s) <= t0 - MARGIN; }).sort(function (x, y) { return x.id < y.id ? -1 : 1; });
-    var seed = function (c) { return C.filter(function (s) { return s.origin === 'seed' && s.category === c; }); };
-    var contrib = C.filter(function (s) { return s.origin !== 'seed'; });
+    var seed = function (c) { return C.filter(function (s) { return s.origin !== 'contribution' && s.category === c; }); };
+    var contrib = C.filter(function (s) { return s.origin === 'contribution'; });
     var age = function (s) { return t0 - addedAt(s); };
     var cat = function (c) { return contrib.filter(function (s) { return s.category === c; }); };
     // the ladder: contributions sink with age (slowed, darkened) into material after 3 days, sediment after 10
@@ -38,14 +38,14 @@
     // SEDIMENT: a continuous bed, two or three layers overlapping
     var sed = seed('sediment').concat(oldSed), t = t0 + R() * 10, prev = null;
     while (sed.length && t < t0 + BLOCK) {
-      var s = pick(sed, R, prev), isOld = s.origin !== 'seed';
+      var s = pick(sed, R, prev), isOld = s.origin === 'contribution';
       var e = mk(s, 'sediment', t, 80 + R() * 40, R, { gain: -4, pan: (R() - 0.5) * 0.6, rate: isOld ? 0.25 : 1, lp: isOld ? 1200 : 0, fade: 12 });
       ev.push(e); prev = s; t += e.len * (0.45 + R() * 0.15);
     }
     // MATERIAL: substance, already stretched
     var mat = seed('material').concat(oldMat), n = 2 + Math.floor(R() * 3), i;
     for (i = 0; i < n && mat.length; i++) {
-      var m = pick(mat, R), mo = m.origin !== 'seed';
+      var m = pick(mat, R), mo = m.origin === 'contribution';
       ev.push(mk(m, 'material', t0 + R() * BLOCK, 35 + R() * 25, R, { gain: -3, pan: (R() - 0.5) * 1.2, rate: mo ? 0.5 : 1, lp: mo ? 4000 : 0, fade: 8 }));
     }
     // TEXTURE: excerpts with a gentle band-pass that changes every time

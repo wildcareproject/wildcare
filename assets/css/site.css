@@ -212,3 +212,38 @@ h1,h2,h3{line-height:1.2;margin:0 0 .5em;font-weight:600}
 #give-preview{width:100%;max-width:520px;margin:6px 0 10px}
 label.btn{cursor:pointer}
 label.filebtn:focus-within{outline:3px solid var(--ink);outline-offset:3px}
+
+/* sound manager */
+.m-status{min-height:1.6em;font-weight:500}
+.m-status.bad{color:#9b1c1c}
+.m-help{font-size:16px;margin-top:10px;max-width:36em}
+.m-help summary{cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.m-drop{border:2px dashed var(--ink);padding:24px;background:var(--white);display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.m-drop.over{background:var(--sole)}
+.m-drop p{margin:0}
+.m-cards,.m-items{list-style:none;margin:20px 0;padding:0}
+.m-card{border:1.5px solid var(--ink);background:var(--white);padding:16px 18px;margin:0 0 14px}
+.c-head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;word-break:break-all}
+.c-status{font-size:15px;margin:4px 0 8px}
+.m-card audio,.m-items audio{width:100%;max-width:520px;margin:6px 0}
+.c-dest,.c-states{border:0;padding:0;margin:10px 0;display:flex;flex-wrap:wrap;gap:6px 22px}
+.c-dest legend,.c-states legend{font-weight:600;font-size:16px;margin-bottom:6px;padding:0}
+.c-dest label,.c-states label{font-size:16px;display:flex;align-items:center;gap:6px;min-height:36px}
+.c-states{flex-direction:column}
+.c-st{font-size:14px}
+.c-ok{font-weight:600;margin:10px 0 0}
+.c-pin{font-size:16px;display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.m-card textarea,.i-form input{font:inherit;font-size:17px;width:100%;max-width:520px;padding:8px 10px;border:1.5px solid var(--ink);background:var(--white);color:var(--ink)}
+.m-mapwrap{margin:0 0 30px}
+.m-map{height:min(60vh,480px);border:1.5px solid var(--ink);background:#e9e9e9}
+.m-map .leaflet-tile-pane{filter:grayscale(1)}
+.m-map.pinning,.m-map.pinning .leaflet-interactive{cursor:crosshair}
+.m-pinhint{min-height:1.5em;font-weight:600;margin:0 0 6px}
+.pin.new{background:var(--white);border-style:dashed}
+.m-items li{padding:14px 0;border-top:1.5px solid transparent;border-image:var(--dash) 1}
+.m-items li.empty{border:0;padding:0}
+.i-size,.i-desc{font-size:14px}
+.i-actions{display:flex;gap:18px}
+.i-form{margin-top:8px}
+.i-form label{display:block;font-size:15px}
+.m-loose label{display:flex;gap:10px;align-items:baseline;word-break:break-all;font-size:15px}

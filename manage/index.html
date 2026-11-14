@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en" data-base="../">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sound manager. WILD:CARE</title>
+<meta name="description" content="Sound manager.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Sound manager. WILD:CARE">
+<meta property="og:description" content="Sound manager.">
+<link rel="icon" href="../assets/img/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/prompt-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="wrap site-head">
+<a class="logo" href="../"><img src="../assets/img/wildcare-logo.png" alt="WILD:CARE, home" width="70" height="52"></a>
+<nav class="nav" aria-label="Main"><a class="dim" href="../walk/">Walk</a><a class="dim" href="../inspire/">Inspire</a><a class="dim" href="../listen/">Listen</a><a class="dim" href="../design/">Design</a><a class="dim" href="../care/">Care</a><span class="sep" aria-hidden="true"></span><a href="../method/">Method</a><a href="../pilots/">Pilots</a><a href="../partners/">Partners</a></nav>
+</header>
+<hr class="fold">
+<main id="main" class="wrap">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><rect x="3" y="4" width="14" height="13"/><path d="M3 10.5h14" stroke-dasharray="2 2"/></svg><span>Sound manager</span></p><div class="content">
+<h1 class="page-title"><span class="name">Sound manager</span></h1>
+<p class="measure">Upload sounds, decide where they go, and manage what is on the site. Changes reach the website about a minute after saving.</p>
+<p id="m-status" class="m-status" role="status" aria-live="polite"></p>
+<div id="m-login">
+ <p class="field"><label for="m-token">GitHub token</label><input id="m-token" type="password" autocomplete="off" spellcheck="false"></p>
+ <p class="check"><input type="checkbox" id="m-remember"><label for="m-remember">Remember on this device (only on your own computer)</label></p>
+ <div class="btn-row"><button type="button" class="btn" id="m-connect">Connect</button></div>
+ <details class="m-help"><summary>How to make a token</summary>
+ <p>On GitHub: your picture → Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token. Resource owner: wildcareproject. Repository access: only <b>wildcare</b>. Permissions: Contents, Read and write. Copy the token and paste it above. The token works only for this repository; it stays in this browser and is sent only to GitHub.</p></details>
+</div>
+</div></section>
+<div id="m-app" hidden>
+<hr class="fold">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 6a6 6 0 0 1 0 9M5 3.5a10 10 0 0 1 0 14"/><circle cx="12.5" cy="10.5" r="2"/></svg><span>Add sounds</span></p><div class="content">
+ <div class="m-drop" id="m-drop"><p>Drop sound files here, or</p><label class="btn ghost filebtn">Choose files<input type="file" id="m-files" accept="audio/*,.wav,.aif,.aiff,.flac,.m4a,.mp3" multiple class="vh"></label>
+ <p class="help">Any length, any common format. Each file is converted in this browser to MP3 at a constant rate: 128 kbps stereo, or 80 kbps when the file is mono.</p></div>
+ <ul class="m-cards" id="m-cards"></ul>
+ <div class="btn-row"><button type="button" class="btn" id="m-publish" data-lock="ready" disabled>Publish 0 sounds</button></div>
+</div></section>
+<section class="m-mapwrap"><p id="m-pinhint" class="m-pinhint" aria-live="polite"></p><div id="m-map" class="m-map" role="region" aria-label="Map of the Listen recordings"></div></section>
+<div class="m-lists">
+<hr class="fold">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 17c3-1 4-5 7-5s4 4 7 3" /><circle cx="5" cy="6" r="1.6"/><circle cx="10" cy="4" r="1.6"/></svg><span>Walk (<span id="m-count-walks">0</span>)</span></p><div class="content"><ul class="m-items" id="m-walks"></ul></div></section>
+<hr class="fold">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 6a6 6 0 0 1 0 9M5 3.5a10 10 0 0 1 0 14"/><circle cx="12.5" cy="10.5" r="2"/></svg><span>Listen (<span id="m-count-listen">0</span>)</span></p><div class="content"><ul class="m-items" id="m-listen"></ul></div></section>
+<hr class="fold">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="8" cy="10.5" r="5"/><circle cx="13" cy="10.5" r="5"/></svg><span>Care (<span id="m-count-care">0</span>)</span></p><div class="content"><p class="help">Sounds become audible in the soundscape about a quarter of an hour after saving.</p><ul class="m-items" id="m-care"></ul></div></section>
+<hr class="fold">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="10" cy="10.5" r="7"/><path d="M10 9v5M10 6.5v.5"/></svg><span>Files not used anywhere</span></p><div class="content">
+ <ul class="m-items m-loose" id="m-loose"></ul>
+ <div class="btn-row"><button type="button" class="textbtn" id="m-loose-all">Tick all</button><button type="button" class="btn ghost" id="m-loose-del" data-lock>Delete the ticked files</button></div>
+ <p class="help" id="m-usage"></p>
+ <p><button type="button" class="textbtn" id="m-forget">Forget the token on this device</button></p>
+</div></section>
+</div>
+</div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="eu-box"><img src="../assets/eu/co-funded-by-the-eu.png" alt="Co-funded by the European Union" width="250" height="52" onerror="this.parentNode.hidden=true"></div>
+<div class="legal"><p>Co-funded by the European Union. Views and opinions expressed are however those of the author(s) only and do not necessarily reflect those of the European Union or the Agenzia Italiana per la Gioventù. Neither the European Union nor the granting authority can be held responsible for them.</p>
+<p>Erasmus+ KA210-YOU. Grant agreement 2025-2-IT03-KA210-YOU-000375840.</p>
+<p class="links"><a href="../partners/#contact">Contact</a></p></div>
+</div></footer>
+<script src="../assets/vendor/leaflet-1.9.4/leaflet.js"></script><script src="../assets/vendor/lamejs-1.2.1/lame.min.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/manage-audio.js"></script><script src="../assets/js/manage.js"></script>
+</body>
+</html>
