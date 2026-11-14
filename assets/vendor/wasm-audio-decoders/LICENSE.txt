@@ -1,0 +1,5 @@
+wasm-audio-decoders (https://github.com/eshaz/wasm-audio-decoders)
+ogg-opus-decoder 1.7.5, @wasm-audio-decoders/ogg-vorbis 0.1.20, @wasm-audio-decoders/flac 0.2.11
+Copyright Ethan Halsall. Released under the MIT License (see the packages on npmjs.com).
+They include libopus, libvorbis and libFLAC (BSD-style licences, Xiph.Org Foundation).
+Used on wildcareproject.org only when the browser cannot read an Ogg or FLAC file by itself.

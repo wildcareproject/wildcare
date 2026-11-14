@@ -154,7 +154,7 @@
       c.mp3 = mp3; c.url = URL.createObjectURL(new Blob([mp3.bytes], { type: 'audio/mpeg' }));
       c.status = mmss(mp3.dur) + ', ' + (mp3.channels === 1 ? 'mono' : 'stereo') + ', MP3 ' + mp3.kbps + ' kbps: ' + mb(mp3.bytes.length) + ' (was ' + mb(file.size) + ').';
       renderCards();
-    }).catch(function () { c.status = 'This file could not be read by the browser. Try WAV, MP3, M4A, AIFF or FLAC.'; c.failed = true; renderCards(); });
+    }).catch(function (e) { c.status = 'This file could not be read' + (e && e.code && e.message ? ' (' + e.message + ')' : '') + '. Save it as MP3, WAV or M4A and try again.'; c.failed = true; renderCards(); });
   }
   function updateStatus(c) { var el = document.querySelector('#' + c.id + ' .c-status'); if (el) el.textContent = c.status; }
   function isReady(c) {

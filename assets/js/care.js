@@ -71,6 +71,8 @@
   }
   var lastNow = '';
   function renderNow(live) {
+    var seen = {};
+    live = live.filter(function (e) { var k = e.id + '|' + e.layer; if (seen[k]) return false; seen[k] = true; return true; });
     var html = live.map(function (e) {
       var credit = e.credit ? ', ' + WC.esc(e.credit) : '';
       return '<li><b>' + WC.esc(e.title || 'Untitled sound') + '</b>' + credit + '. <span class="as">As ' + e.layer + '.</span></li>';

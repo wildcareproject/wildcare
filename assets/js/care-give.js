@@ -10,14 +10,10 @@
   var MAX = 30, SR = 44100, result = null, mr = null, chunks = [], timer = null;
 
   function say(t) { msg.textContent = t; }
-  function process(arrayBuf) {
+  function process(decoded) {
     say('Preparing the sound.');
-    var AC = window.OfflineAudioContext || window.webkitOfflineAudioContext;
-    var oc = new AC(2, SR, SR);
-    var p = new Promise(function (res, rej) { var r = oc.decodeAudioData(arrayBuf, res, rej); if (r && r.then) r.then(res, rej); });
-    return p.then(function (buf) {
-      var ch = [], n = buf.length, i, c, nc = Math.min(2, buf.numberOfChannels);
-      for (c = 0; c < nc; c++) ch.push(buf.getChannelData(c));
+    return Promise.resolve(decoded).then(function (buf) {
+      var ch = buf.ch.slice(0, 2), n = ch[0].length, i, c, nc = ch.length;
       var mono = new Float32Array(n); for (c = 0; c < nc; c++) for (i = 0; i < n; i++) mono[i] += ch[c][i] / nc;
       // trim silence below -50 dBFS at both ends
       var thr = Math.pow(10, -50 / 20), a = 0, b = n - 1;
@@ -63,15 +59,18 @@
   function ready_(r) {
     result = r; preview.src = URL.createObjectURL(r.blob); ready.hidden = false;
     heard.textContent = r.dur + ' seconds. ' + WORDS[r.category] + ' For its first day it also sounds in the foreground, so you can find it; then it slowly sinks into the soundscape.';
-    say(''); send.disabled = !consent.checked;
+    say(''); send.disabled = false; clearConsentAlert();
   }
   function fail(err) {
-    say(err && err.message === 'silent' ? 'This recording seems to be silent. Try again a little closer to the sound.' : 'This file could not be read. Try another recording, or a WAV or MP3 file.');
+    var code = err && (err.code || err.message), name = err && err.code && err.message ? err.message : '';
+    if (code === 'silent') say('This recording seems to be silent. Try again a little closer to the sound.');
+    else if (code === 'size') say('This file is too large to open here. Trim it to the part you want to give, or record the sound directly.');
+    else say('This file could not be read' + (name ? ' (' + name + ')' : '') + '. Most sound and video files work; if this one does not, save it as MP3, WAV or M4A and try again.');
   }
   file.addEventListener('change', function () {
     var f = file.files[0]; if (!f) return;
-    if (f.size > 60 * 1024 * 1024) { say('This file is too large. Choose a shorter one.'); return; }
-    f.arrayBuffer().then(process).then(ready_, fail);
+    say('Reading the file.'); ready.hidden = true;
+    WCDecode.decode(f, { maxSeconds: 120, maxBytes: 80 * 1024 * 1024 }).then(process).then(ready_, fail);
   });
   rec.addEventListener('click', function () {
     if (mr && mr.state === 'recording') { mr.stop(); return; }
@@ -82,15 +81,23 @@
       mr.onstop = function () {
         clearInterval(timer); stream.getTracks().forEach(function (t) { t.stop(); });
         rec.textContent = 'Record again';
-        new Blob(chunks, { type: mr.mimeType }).arrayBuffer().then(process).then(ready_, fail);
+        WCDecode.decode(new Blob(chunks, { type: mr.mimeType }), { maxSeconds: 120 }).then(process).then(ready_, fail);
       };
       mr.start(); var left = MAX; rec.textContent = 'Stop (' + left + ')';
       timer = setInterval(function () { left--; rec.textContent = 'Stop (' + left + ')'; if (left <= 0) mr.stop(); }, 1000);
     }, function () { say('The microphone is not available. You can choose a file instead.'); });
   });
-  consent.addEventListener('change', function () { send.disabled = !(consent.checked && result); });
+  var consentBox = document.getElementById('give-consent-box'), consentAlert = document.getElementById('give-consent-alert');
+  function clearConsentAlert() { consentBox.classList.remove('alert'); consent.removeAttribute('aria-invalid'); consentAlert.hidden = true; }
+  consent.addEventListener('change', function () { if (consent.checked) clearConsentAlert(); });
   send.addEventListener('click', function () {
-    if (!result || !consent.checked) return;
+    if (!result) return;
+    if (!consent.checked) {
+      consentBox.classList.remove('alert'); void consentBox.offsetWidth; consentBox.classList.add('alert');
+      consent.setAttribute('aria-invalid', 'true'); consentAlert.hidden = false;
+      consentBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); consent.focus({ preventScroll: true });
+      return;
+    }
     send.disabled = true; say('Sending.');
     var fr = new FileReader();
     fr.onload = function () {
@@ -99,7 +106,7 @@
         body: JSON.stringify({ mp3: b64, title: title.value.trim().slice(0, 40), credit: credit.value.trim().slice(0, 40), category: result.category, dur: result.dur }) })
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d.ok) { say('Thank you. Your sound joins the soundscape in about half an hour.'); ready.hidden = true; result = null; title.value = ''; credit.value = ''; consent.checked = false; }
+          if (d.ok) { say('Thank you. Your sound joins the soundscape in about half an hour.'); ready.hidden = true; result = null; title.value = ''; credit.value = ''; consent.checked = false; clearConsentAlert(); }
           else if (d.error === 'busy') { say('Many sounds have arrived this hour. Try again a little later.'); send.disabled = false; }
           else { say('The sound could not be sent. Try again in a moment.'); send.disabled = false; }
         }, function () { say('The sound could not be sent. Check the connection and try again.'); send.disabled = false; });

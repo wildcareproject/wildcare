@@ -5,15 +5,8 @@
   var SR = 44100;
   var tick = function () { return new Promise(function (r) { setTimeout(r, 0); }); };
 
-  function decode(file) {
-    return file.arrayBuffer().then(function (ab) {
-      var AC = window.OfflineAudioContext || window.webkitOfflineAudioContext, oc = new AC(2, SR, SR);
-      return new Promise(function (res, rej) { var p = oc.decodeAudioData(ab, res, rej); if (p && p.then) p.then(res, rej); });
-    }).then(function (buf) {
-      var ch = []; for (var c = 0; c < Math.min(2, buf.numberOfChannels); c++) ch.push(buf.getChannelData(c));
-      return { ch: ch, sr: SR, dur: buf.length / SR };
-    });
-  }
+  /* any format: see audio-decode.js */
+  function decode(file) { return WCDecode.decode(file, {}); }
   /* true if the two channels are (almost) identical: then mono is enough and halves the size */
   function isMono(ch) {
     if (ch.length < 2) return true;

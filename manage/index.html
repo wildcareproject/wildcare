@@ -36,8 +36,8 @@
 <div id="m-app" hidden>
 <hr class="fold">
 <section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M8 6a6 6 0 0 1 0 9M5 3.5a10 10 0 0 1 0 14"/><circle cx="12.5" cy="10.5" r="2"/></svg><span>Add sounds</span></p><div class="content">
- <div class="m-drop" id="m-drop"><p>Drop sound files here, or</p><label class="btn ghost filebtn">Choose files<input type="file" id="m-files" accept="audio/*,.wav,.aif,.aiff,.flac,.m4a,.mp3" multiple class="vh"></label>
- <p class="help">Any length, any common format. Each file is converted in this browser to MP3 at a constant rate: 128 kbps stereo, or 80 kbps when the file is mono.</p></div>
+ <div class="m-drop" id="m-drop"><p>Drop sound files here, or</p><label class="btn ghost filebtn">Choose files<input type="file" id="m-files" accept="audio/*,video/*,.mp3,.wav,.wave,.bwf,.rf64,.aif,.aiff,.aifc,.caf,.flac,.ogg,.oga,.opus,.m4a,.m4b,.aac,.adts,.alac,.mp4,.mov,.m4v,.3gp,.3ga,.3g2,.webm,.weba,.mka,.mkv,.amr,.awb,.wma,.asf" multiple class="vh"></label>
+ <p class="help">Any length, any common sound or video format (the sound is taken from videos). Each file is converted in this browser to MP3 at a constant rate: 128 kbps stereo, or 80 kbps when the file is mono.</p></div>
  <ul class="m-cards" id="m-cards"></ul>
  <div class="btn-row"><button type="button" class="btn" id="m-publish" data-lock="ready" disabled>Publish 0 sounds</button></div>
 </div></section>
@@ -63,6 +63,6 @@
 <p>Erasmus+ KA210-YOU. Grant agreement 2025-2-IT03-KA210-YOU-000375840.</p>
 <p class="links"><a href="../partners/#contact">Contact</a></p></div>
 </div></footer>
-<script src="../assets/vendor/leaflet-1.9.4/leaflet.js"></script><script src="../assets/vendor/lamejs-1.2.1/lame.min.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/manage-audio.js"></script><script src="../assets/js/manage.js"></script>
+<script src="../assets/vendor/leaflet-1.9.4/leaflet.js"></script><script src="../assets/vendor/lamejs-1.2.1/lame.min.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/audio-decode.js"></script><script src="../assets/js/manage-audio.js"></script><script src="../assets/js/manage.js"></script>
 </body>
 </html>

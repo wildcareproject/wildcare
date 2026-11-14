@@ -247,3 +247,12 @@ label.filebtn:focus-within{outline:3px solid var(--ink);outline-offset:3px}
 .i-form{margin-top:8px}
 .i-form label{display:block;font-size:15px}
 .m-loose label{display:flex;gap:10px;align-items:baseline;word-break:break-all;font-size:15px}
+
+/* care: consent */
+.consent-box{border:2px solid var(--ink);background:var(--white);padding:14px 16px;margin:18px 0 20px;max-width:38em}
+.consent-box .check{margin:0;font-size:16px}
+.consent-box .check input{width:28px;height:28px;margin-top:0}
+.consent-box.alert{background:var(--sole);border-width:3px;animation:nudge .45s ease-in-out}
+.consent-alert{margin:10px 0 0 45px;font-weight:600;font-size:16px}
+@keyframes nudge{0%,100%{transform:none}20%{transform:translateX(-6px)}40%{transform:translateX(6px)}60%{transform:translateX(-4px)}80%{transform:translateX(3px)}}
+@media (prefers-reduced-motion:reduce){.consent-box.alert{animation:none}}

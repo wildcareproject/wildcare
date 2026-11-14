@@ -36,17 +36,17 @@
 <section class="row" id="give"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="8" cy="10.5" r="5"/><circle cx="13" cy="10.5" r="5"/></svg><span>Give a sound</span></p><div class="content">
 <div class="give-soon" hidden><p class="soon">Opens soon <span>Giving a sound will be possible from this page.</span></p></div>
 <div class="give-open">
- <p class="measure">Record up to 30 seconds, or choose a file. The sound becomes part of the soundscape for everyone, about half an hour after you send it.</p>
+ <p class="measure">Record up to 30 seconds, or choose a file in any common sound or video format: the first 30 seconds of sound are kept. The sound becomes part of the soundscape for everyone, about half an hour after you send it.</p>
  <div class="btn-row"><button type="button" class="btn" id="give-rec">Record</button>
- <label class="btn ghost filebtn">Choose a file<input type="file" id="give-file" accept="audio/*" class="vh"></label></div>
+ <label class="btn ghost filebtn">Choose a file<input type="file" id="give-file" accept="audio/*,video/*,.mp3,.wav,.wave,.bwf,.rf64,.aif,.aiff,.aifc,.caf,.flac,.ogg,.oga,.opus,.m4a,.m4b,.aac,.adts,.alac,.mp4,.mov,.m4v,.3gp,.3ga,.3g2,.webm,.weba,.mka,.mkv,.amr,.awb,.wma,.asf" class="vh"></label></div>
  <p id="give-msg" class="help" aria-live="polite"></p>
  <div id="give-ready" hidden>
   <audio id="give-preview" controls></audio>
   <p id="give-heard" class="measure"></p>
   <p class="field"><label for="give-title">Name this sound <span>(optional)</span></label><input id="give-title" maxlength="40" autocomplete="off"></p>
   <p class="field"><label for="give-credit">Your name, as it should appear <span>(optional)</span></label><input id="give-credit" maxlength="40" autocomplete="off"></p>
-  <p class="check"><input type="checkbox" id="give-consent"><label for="give-consent">I recorded this sound or have the right to share it, and I agree that it becomes part of a public soundscape on this website. Anyone audible in it has agreed.</label></p>
-  <button type="button" class="btn" id="give-send" disabled>Give this sound</button>
+  <div class="consent-box" id="give-consent-box"><p class="check"><input type="checkbox" id="give-consent" aria-describedby="give-consent-alert" required><label for="give-consent"><b>Before giving.</b> I recorded this sound or have the right to share it, and I agree that it becomes part of a public soundscape on this website. Anyone audible in it has agreed.</label></p><p class="consent-alert" id="give-consent-alert" role="alert" hidden>Tick this box to give your sound.</p></div>
+  <button type="button" class="btn" id="give-send">Give this sound</button>
  </div>
 </div>
 </div></section>
@@ -57,6 +57,6 @@
 <p>Erasmus+ KA210-YOU. Grant agreement 2025-2-IT03-KA210-YOU-000375840.</p>
 <p class="links"><a href="../partners/#contact">Contact</a></p></div>
 </div></footer>
-<script src="../data/worksheets.js"></script><script src="../data/care-config.js"></script><script src="../assets/vendor/lamejs-1.2.1/lame.min.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/care-score.js"></script><script src="../assets/js/care.js"></script><script src="../assets/js/care-give.js"></script>
+<script src="../data/worksheets.js"></script><script src="../data/care-config.js"></script><script src="../assets/vendor/lamejs-1.2.1/lame.min.js"></script><script src="../assets/js/site.js"></script><script src="../assets/js/care-score.js"></script><script src="../assets/js/care.js"></script><script src="../assets/js/audio-decode.js"></script><script src="../assets/js/care-give.js"></script>
 </body>
 </html>

@@ -34,6 +34,9 @@
     // the ladder: contributions sink with age (slowed, darkened) into material after 3 days, sediment after 10
     var oldMat = contrib.filter(function (s) { return age(s) > 3 * DAY; });
     var oldSed = contrib.filter(function (s) { return age(s) > 10 * DAY; });
+    // while the ground has not formed yet (fewer than three sunken sounds), the bed borrows from every sound
+    if (oldMat.length < 3) oldMat = contrib.slice();
+    if (oldSed.length < 3) oldSed = contrib.slice();
 
     // SEDIMENT: a continuous bed, two or three layers overlapping
     var sed = seed('sediment').concat(oldSed), t = t0 + R() * 10, prev = null;
