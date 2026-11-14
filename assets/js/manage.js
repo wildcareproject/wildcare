@@ -4,6 +4,7 @@
 (function () {
   'use strict';
   var REPO = 'wildcareproject/wildcare', BRANCH = 'main', API = 'https://api.github.com/repos/' + REPO;
+  /* care/corpus.json is read only so that visitors' Care sounds are never listed as unused files */
   var PATHS = { walks: 'data/walks.js', listen: 'data/sounds.js', care: 'care/corpus.json' };
   var HEADS = {
     walks: '/* WALK: the chain of walks (anonymous; place and year). Managed from wildcareproject.org/manage/ */\nwindow.WILDCARE_WALKS = ',
@@ -144,7 +145,7 @@
   drop.addEventListener('drop', function (e) { e.preventDefault(); drop.classList.remove('over'); Array.prototype.forEach.call(e.dataTransfer.files, addCard); });
 
   function addCard(file) {
-    var c = { id: 'c' + Math.random().toString(36).slice(2, 8), file: file, dest: '', f: {}, src: null, mp3: null, care: {}, careStates: { texture: true, material: true, sediment: true }, lat: null, lng: null, status: 'Reading the file.' };
+    var c = { id: 'c' + Math.random().toString(36).slice(2, 8), file: file, dest: '', f: {}, src: null, mp3: null, lat: null, lng: null, status: 'Reading the file.' };
     cards.push(c); renderCards();
     A.decode(file).then(function (src) {
       c.src = src; c.status = 'Converting.'; renderCards();
@@ -156,12 +157,10 @@
     }).catch(function () { c.status = 'This file could not be read by the browser. Try WAV, MP3, M4A, AIFF or FLAC.'; c.failed = true; renderCards(); });
   }
   function updateStatus(c) { var el = document.querySelector('#' + c.id + ' .c-status'); if (el) el.textContent = c.status; }
-  function careReady(c) { var want = Object.keys(c.careStates).filter(function (k) { return c.careStates[k]; }); return want.length && want.every(function (k) { return c.care[k] && c.care[k].bytes; }); }
   function isReady(c) {
     if (!c.mp3) return false;
     if (c.dest === 'walk') return !!(c.f.place && /^\d{4}$/.test(c.f.year || ''));
     if (c.dest === 'listen') return !!(c.f.title && c.lat != null);
-    if (c.dest === 'care') return !!(c.f.title && careReady(c));
     return false;
   }
   function readyCards() { return cards.filter(isReady); }
@@ -176,18 +175,11 @@
       if (c.mp3) {
         h += '<audio controls preload="none" src="' + c.url + '"></audio>' +
           '<fieldset class="c-dest"><legend>Where does it go?</legend>' +
-          ['walk', 'listen', 'care'].map(function (d) { return '<label><input type="radio" name="' + c.id + '-d" value="' + d + '"' + (c.dest === d ? ' checked' : '') + '> ' + { walk: 'Walk', listen: 'Listen (map)', care: 'Care (soundscape)' }[d] + '</label>'; }).join('') + '</fieldset>';
+          ['walk', 'listen'].map(function (d) { return '<label><input type="radio" name="' + c.id + '-d" value="' + d + '"' + (c.dest === d ? ' checked' : '') + '> ' + { walk: 'Walk', listen: 'Listen (map)' }[d] + '</label>'; }).join('') + '</fieldset>';
         if (c.dest === 'walk') h += field(c, 'place', 'Place') + field(c, 'year', 'Year', false, 'inputmode="numeric" maxlength="4" placeholder="2024"');
         if (c.dest === 'listen') h += field(c, 'title', 'Title') + field(c, 'place', 'Place', true) + field(c, 'date', 'Date', true, 'type="date"') +
           '<p class="field"><label for="' + c.id + '-description">Description <span>(optional)</span></label><textarea id="' + c.id + '-description" data-k="description" rows="2">' + esc(c.f.description || '') + '</textarea></p>' +
           '<p class="c-pin">' + (c.lat != null ? 'Pinned at ' + c.lat + ', ' + c.lng + '. ' : 'Not pinned yet. ') + '<button type="button" class="btn ghost c-pinbtn">' + (c.lat != null ? 'Move the pin' : 'Place on the map') + '</button></p>';
-        if (c.dest === 'care') {
-          h += field(c, 'title', 'Title') + field(c, 'credit', 'Credit', true) +
-            '<fieldset class="c-states"><legend>Render as</legend>' + A.STATES.map(function (k) {
-              var r = c.care[k], st = r && r.bytes ? mmss(r.dur) + ', ' + mb(r.bytes.length) : (r && r.p != null ? Math.round(r.p * 100) + '%' : '');
-              return '<label><input type="checkbox" data-state="' + k + '"' + (c.careStates[k] ? ' checked' : '') + '> ' + k + ' <span class="c-st">' + st + '</span></label>' + (r && r.url ? '<audio controls preload="none" src="' + r.url + '"></audio>' : '');
-            }).join('') + '</fieldset>';
-        }
       }
       return h + (isReady(c) ? '<p class="c-ok">Ready to publish.</p>' : '') + '</li>';
     }).join('');
@@ -201,8 +193,7 @@
   });
   $('m-cards').addEventListener('change', function (e) {
     var li = e.target.closest('.m-card'); if (!li) return; var c = cards.filter(function (x) { return x.id === li.id; })[0];
-    if (e.target.name === c.id + '-d') { c.dest = e.target.value; renderCards(); if (c.dest === 'care') renderCare(c); }
-    if (e.target.dataset.state) { c.careStates[e.target.dataset.state] = e.target.checked; renderCards(); renderCare(c); }
+    if (e.target.name === c.id + '-d') { c.dest = e.target.value; renderCards(); }
   });
   $('m-cards').addEventListener('input', function (e) {
     var li = e.target.closest('.m-card'); if (!li || !e.target.dataset.k) return; var c = cards.filter(function (x) { return x.id === li.id; })[0];
@@ -210,44 +201,25 @@
     var ok = li.querySelector('.c-ok'); if (isReady(c) && !ok) li.insertAdjacentHTML('beforeend', '<p class="c-ok">Ready to publish.</p>'); if (!isReady(c) && ok) ok.remove();
     $('m-publish').textContent = 'Publish ' + readyCards().length + ' sound' + (readyCards().length === 1 ? '' : 's'); lock(busy);
   });
-  var rendering = Promise.resolve();
-  function renderCare(c) {
-    A.STATES.forEach(function (k) {
-      if (!c.careStates[k] || c.care[k]) return;
-      c.care[k] = { p: 0 };
-      rendering = rendering.then(function () {
-        return A.render(c.src, k, Math.floor(Math.random() * 1e9), function (p) {
-          c.care[k].p = p; var el = document.querySelector('#' + c.id + ' [data-state="' + k + '"] + .c-st'); if (el) el.textContent = Math.round(p * 100) + '%';
-        }).then(function (r) { r.url = URL.createObjectURL(new Blob([r.bytes], { type: 'audio/mpeg' })); c.care[k] = r; renderCards(); });
-      });
-    });
-  }
   $('m-publish').addEventListener('click', function () {
     var ready = readyCards(); if (!ready.length) return;
-    var uploads = [], add = { walks: [], listen: [], care: [] }, now = new Date().toISOString();
+    var uploads = [], add = { walks: [], listen: [] };
     ready.forEach(function (c) {
       var r = rand4();
       if (c.dest === 'walk') {
         var p = 'audio/walks/' + slug(c.f.place) + '-' + c.f.year + '-' + r + '.mp3';
         uploads.push({ path: p, bytes: c.mp3.bytes });
         add.walks.push({ file: p, place: c.f.place, year: c.f.year, duration: Math.round(c.mp3.dur) });
-      } else if (c.dest === 'listen') {
+      } else {
         var q = 'audio/listen/' + slug(c.f.title) + '-' + r + '.mp3';
         uploads.push({ path: q, bytes: c.mp3.bytes });
         var e = { title: c.f.title, lat: c.lat, lng: c.lng, file: q, duration: Math.round(c.mp3.dur) };
         ['date', 'place', 'description'].forEach(function (k) { if (c.f[k]) e[k] = c.f[k]; });
         add.listen.push(e);
-      } else {
-        A.STATES.forEach(function (k) {
-          if (!c.careStates[k]) return;
-          var path = 'audio/care/curated/' + slug(c.f.title) + '-' + k + '-' + r + '.mp3';
-          uploads.push({ path: path, bytes: c.care[k].bytes });
-          add.care.push({ id: 'k-' + slug(c.f.title) + '-' + k + '-' + r, file: path, title: c.f.title, credit: c.f.credit || '', origin: 'curated', category: k, dur: Math.round(c.care[k].dur * 10) / 10, added: now });
-        });
       }
     });
     commit('Manager: ' + ready.length + ' new sound' + (ready.length > 1 ? 's' : ''), uploads, function (s) {
-      s.walks = s.walks.concat(add.walks); s.listen = s.listen.concat(add.listen); s.care = s.care.concat(add.care);
+      s.walks = s.walks.concat(add.walks); s.listen = s.listen.concat(add.listen);
       return { changed: Object.keys(add).filter(function (k) { return add[k].length; }) };
     }).then(function () { cards = cards.filter(function (c) { return ready.indexOf(c) < 0; }); renderCards(); }, function () {});
   });
@@ -266,22 +238,17 @@
         (s.description ? '<p class="i-desc">' + esc(s.description) + '</p>' : '') +
         '<audio controls preload="none" src="' + esc(WC.base + s.file) + '"></audio><div class="i-actions"><button type="button" class="textbtn i-edit">Edit</button><button type="button" class="textbtn i-pin">Move the pin</button><button type="button" class="textbtn i-del">Delete</button></div></li>';
     }).join('') : '<li class="empty">No recordings on the map.</li>';
-    $('m-care').innerHTML = state.care.length ? state.care.map(function (s, i) {
-      return '<li data-kind="care" data-i="' + i + '"><div class="i-main"><b>' + esc(s.title || 'Untitled') + '</b>' + (s.credit ? ', ' + esc(s.credit) : '') + '. ' + esc(s.category) + (s.origin === 'contribution' ? ', given by a visitor' : '') + ' <span class="i-size">' + Math.round(s.dur) + ' s, ' + sizeOf(s.file) + '</span></div>' +
-        '<audio controls preload="none" src="' + esc(WC.base + s.file) + '"></audio><div class="i-actions"><button type="button" class="textbtn i-edit">Edit</button><button type="button" class="textbtn i-del">Delete</button></div></li>';
-    }).join('') : '<li class="empty">The soundscape is empty.</li>';
     var u = used(), loose = state.files.filter(function (f) { return AUDIO_EXT.test(f.path) && !u[f.path]; });
     $('m-loose').innerHTML = loose.length ? loose.map(function (f) { return '<li><label><input type="checkbox" value="' + esc(f.path) + '"> ' + esc(f.path) + ' <span class="i-size">' + mb(f.size) + '</span></label></li>'; }).join('') : '<li class="empty">None.</li>';
     $('m-loose-del').hidden = !loose.length;
     var total = state.files.reduce(function (a, f) { return a + (f.size || 0); }, 0);
     $('m-usage').textContent = 'The repository holds ' + mb(total) + ' of the 1 GB GitHub allows for a website.';
-    $('m-count-walks').textContent = state.walks.length; $('m-count-listen').textContent = state.listen.length; $('m-count-care').textContent = state.care.length;
+    $('m-count-walks').textContent = state.walks.length; $('m-count-listen').textContent = state.listen.length;
     drawPins();
   }
   var EDIT = {
     walks: [['place', 'Place'], ['year', 'Year']],
-    listen: [['title', 'Title'], ['place', 'Place'], ['date', 'Date (YYYY-MM-DD)'], ['description', 'Description']],
-    care: [['title', 'Title'], ['credit', 'Credit']]
+    listen: [['title', 'Title'], ['place', 'Place'], ['date', 'Date (YYYY-MM-DD)'], ['description', 'Description']]
   };
   document.querySelector('.m-lists').addEventListener('click', function (e) {
     var li = e.target.closest('li[data-kind]'); if (!li || busy) return;

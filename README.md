@@ -37,8 +37,8 @@ from the European Commission's visual identity page and upload it as
 All sound files are managed at **wildcareproject.org/manage/** (not linked from the site, hidden from search engines).
 Connect once with a GitHub token (instructions on the page), then:
 - drop any sound files: they are converted in the browser to MP3 (128 kbps stereo, 80 kbps mono);
-- for each one choose **Walk** (place, year), **Listen** (title, pin on the map, optional place, date, description)
-  or **Care** (rendered as texture, material and/or sediment), then **Publish**: everything goes up in one save;
+- for each one choose **Walk** (place, year) or **Listen** (title, pin on the map, optional place, date, description),
+  then **Publish**: everything goes up in one save;
 - edit, move pins, delete sounds, and delete files that nothing uses any more.
 
 ## Everyday edits (all in the browser)
@@ -53,7 +53,7 @@ Open the file on GitHub, click the pencil, change it, click **Commit changes**. 
 
 - `care/corpus.json` is the list of every sound in the soundscape. The drop box adds and removes lines itself;
   you only touch it to remove a sound by hand (delete its whole `{ … }` block and the comma before it).
-- `audio/care/curated/` holds the sounds added from the sound manager; `audio/care/contributed/` fills up by itself with visitors' sounds.
+- `audio/care/contributed/` fills up by itself with the sounds given on the Care page (yours included). The sound manager does not handle Care.
 - `data/care-config.js` holds the drop box address. Empty = giving is closed, the soundscape still plays.
 - Setting up the drop box: see CARE-SETUP.md (delivered with the drop box code).
 

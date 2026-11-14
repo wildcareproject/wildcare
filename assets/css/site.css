@@ -8,7 +8,7 @@
 :root{
   --ivory:#FDF2DA; --ink:#111111; --white:#FFFFFF;
   --sole:#FEDC38; --oro:#F89F25; --pistacchio:#7BC147; --verde:#8CCEA9; --avorio:#FDF2DA; --rosa:#ECC2D7; --celeste:#73BBC3;
-  --pin:#FFD400;
+  --pin:#73BBC3;
   --dash:repeating-linear-gradient(to right,var(--ink) 0 14px,transparent 14px 22px);
   --dash-v:repeating-linear-gradient(to bottom,var(--ink) 0 14px,transparent 14px 22px);
   --pad:clamp(20px,4vw,40px);
