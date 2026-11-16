@@ -66,6 +66,9 @@ Open the file on GitHub, click the pencil, change it, click **Commit changes**. 
   GitHub (sound manager) and Google Apps Script (the Care drop box). Anything else is refused by the browser.
 - If you ever add an outside service (an embedded video, a form, analytics), it will be blocked until its
   address is added to that line in every page. Ask before changing it.
+- Every page asks for its scripts and styles with a version number (`site.js?v=17a6d061`): the number changes whenever
+  the file changes, so browsers can never mix a new page with an old cached script. Updates from Claude come with new numbers.
+  If you edit a script yourself on GitHub, visitors may see the old one for up to 10 minutes.
 - No inline scripts: page code lives in `assets/js/`. `fresh-data.js` loads the Walk and Listen lists fresh on each visit.
 - HTTPS: Settings → Pages → Enforce HTTPS must stay ticked.
 
