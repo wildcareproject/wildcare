@@ -1,18 +1,14 @@
-/* WALK: a chain of walks, each recorded by a different person.
-   Random order, every walk once before any repeats, crossfade between walks, a "next" control, captions.
+/* WALK: a chain of walks. Random order, every walk once before any repeats, crossfade between walks,
+   a "next" control. Only the name of the walk playing is shown.
    Web Audio gain nodes do the fades (iOS ignores the volume of audio elements). */
 (function () {
   var WC = window.WC, walks = window.WILDCARE_WALKS || [], FADE = 6;
-  var empty = document.getElementById('walk-empty'), player = document.getElementById('walk-player'), list = document.getElementById('walk-list');
+  var empty = document.getElementById('walk-empty'), player = document.getElementById('walk-player');
   if (!walks.length) { empty.hidden = false; return; }
-  player.hidden = false; document.getElementById('walk-all').hidden = false;
-  function credit(w) { return 'Recorded in ' + w.year; }
-  list.innerHTML = walks.map(function (w) {
-    return '<li><p style="margin:0;font-weight:600">' + WC.esc(w.place) + '</p><p style="margin:0;font-size:16px">' + WC.esc(credit(w)) + '</p></li>';
-  }).join('');
+  player.hidden = false;
 
   var startBtn = document.getElementById('walk-start'), nextBtn = document.getElementById('walk-next'), pauseBtn = document.getElementById('walk-pause');
-  var who = document.getElementById('now-who'), when = document.getElementById('now-when');
+  var who = document.getElementById('now-who');
   var ctx = null, slots = [], cur = -1, bag = [], fading = false, paused = false;
 
   function mk() {
@@ -37,7 +33,7 @@
     ramp(s, 1, prev ? FADE : 1.5);
     if (prev) { ramp(prev, 0, FADE); setTimeout(function () { if (slots[cur] !== prev) prev.el.pause(); }, FADE * 1000 + 200); }
     cur = ni;
-    who.textContent = w.place; when.textContent = credit(w);
+    who.textContent = w.place;
     setTimeout(function () { fading = false; }, FADE * 1000);
   }
   startBtn.addEventListener('click', function () {
@@ -47,7 +43,7 @@
     startBtn.hidden = true; nextBtn.hidden = false; pauseBtn.hidden = false;
     step(); nextBtn.focus();
   });
-  nextBtn.addEventListener('click', function () { if (!fading) step(); });
+  nextBtn.addEventListener('click', function () { if (paused) setPaused(false); step(); });
   function setPaused(v) {
     paused = v; pauseBtn.textContent = v ? 'Resume' : 'Pause';
     slots.forEach(function (s) { if (v) s.el.pause(); else if (s === slots[cur]) s.el.play(); });

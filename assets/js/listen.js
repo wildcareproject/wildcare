@@ -1,61 +1,25 @@
-/* LISTEN: the sound map. The list is always there; the map loads only when asked
-   (its images come from OpenStreetMap's servers). Leaflet 1.9.4 is stored on the site. */
+/* LISTEN: the sound map. Every recording is reached through its pin.
+   Leaflet 1.9.4 is stored on the site; the map images come from OpenStreetMap.
+   Keyboard: Tab reaches each pin, Enter opens it, Tab again reaches the player. */
 (function () {
-  var WC = window.WC, sounds = window.WILDCARE_SOUNDS || [], ul = document.getElementById('sounds');
+  var WC = window.WC, sounds = window.WILDCARE_SOUNDS || [], mapEl = document.getElementById('map');
   function fmt(d) { return new Date(d + 'T12:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); }
-  function dur(s) { var m = Math.floor(s / 60), r = s % 60; return m + ' min' + (r ? ' ' + r + ' s' : ''); }
-  function meta(s) {
-    var bits = [s.place, s.date ? fmt(s.date) : '', s.duration ? dur(s.duration) : ''].filter(Boolean).map(WC.esc).join(', ');
-    return bits + (bits ? '.' : '') + (s.author ? ' Recorded by ' + WC.esc(s.author) + '.' : '');
-  }
-  if (!sounds.length) {
-    document.getElementById('listen-empty').hidden = false; document.getElementById('consent').hidden = true;
-    document.getElementById('listen-list').hidden = true; return;
-  }
-  var order = sounds.slice().sort(function (a, b) { return (a.date || '') < (b.date || '') ? 1 : -1; });
-  ul.innerHTML = order.map(function (s, i) {
-    var id = 'rec-' + i;
-    s._id = id;
-    return '<li id="' + id + '"><h3>' + WC.esc(s.title) + '</h3><p class="meta">' + meta(s) + '</p>' +
-      (s.description ? '<p>' + WC.esc(s.description) + '</p>' : '') +
-      '<audio controls preload="none" src="' + WC.esc(WC.base + s.file) + '" aria-label="Play ' + WC.esc(s.title) + '"></audio>' +
-      '<p style="margin:6px 0 0"><button type="button" class="textbtn show-on-map" data-i="' + i + '" hidden>Show on the map</button></p></li>';
-  }).join('');
+  if (!sounds.length) document.getElementById('listen-empty').hidden = false;
 
-  var btn = document.getElementById('map-load'), mapEl = document.getElementById('map'), map = null, markers = [];
-  function load(src, isCss) {
-    return new Promise(function (res, rej) {
-      var el = document.createElement(isCss ? 'link' : 'script');
-      if (isCss) { el.rel = 'stylesheet'; el.href = src; } else { el.src = src; }
-      el.onload = res; el.onerror = rej; document.head.appendChild(el);
-    });
-  }
-  btn.addEventListener('click', function () {
-    btn.disabled = true; btn.textContent = 'Loading the map';
-    var v = WC.base + 'assets/vendor/leaflet-1.9.4/';
-    Promise.all([load(v + 'leaflet.css', true), load(v + 'leaflet.js')]).then(function () {
-      document.getElementById('consent').hidden = true;
-      mapEl.classList.add('on');
-      map = L.map(mapEl, { scrollWheelZoom: false });
-      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-      }).addTo(map);
-      var icon = L.divIcon({ className: '', html: '<div class="pin"></div>', iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10] });
-      order.forEach(function (s) {
-        var m = L.marker([s.lat, s.lng], { icon: icon, title: s.title, alt: s.title, keyboard: true }).addTo(map);
-        m.bindPopup('<strong>' + WC.esc(s.title) + '</strong>' + (s.date ? '<br>' + fmt(s.date) : '') + (s.description ? '<br>' + WC.esc(s.description) : '') +
-          '<br><audio controls preload="none" src="' + WC.esc(WC.base + s.file) + '"></audio>');
-        markers.push(m);
-      });
-      map.fitBounds(L.latLngBounds(order.map(function (s) { return [s.lat, s.lng]; })), { padding: [30, 30] });
-      document.querySelectorAll('.show-on-map').forEach(function (b) { b.hidden = false; });
-      mapEl.setAttribute('aria-label', 'Map of the recordings. Each pin opens the recording and its description.');
-    }, function () { btn.disabled = false; btn.textContent = 'The map could not load. Try again'; });
+  var map = L.map(mapEl, { scrollWheelZoom: false });
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
+  var icon = L.divIcon({ className: '', html: '<div class="pin"></div>', iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10] });
+  sounds.forEach(function (s) {
+    var where = [s.place, s.date ? fmt(s.date) : ''].filter(Boolean).map(WC.esc).join(', ');
+    L.marker([s.lat, s.lng], { icon: icon, title: s.title, alt: s.title, keyboard: true }).addTo(map)
+      .bindPopup('<strong>' + WC.esc(s.title) + '</strong>' + (where ? '<br>' + where : '') + (s.description ? '<br>' + WC.esc(s.description) : '') +
+        '<br><audio controls preload="none" src="' + WC.esc(WC.base + s.file) + '" aria-label="Play ' + WC.esc(s.title) + '"></audio>', { minWidth: 300 });
   });
-  ul.addEventListener('click', function (e) {
-    var b = e.target.closest('.show-on-map'); if (!b || !map) return;
-    var i = +b.dataset.i, s = order[i];
-    mapEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    map.setView([s.lat, s.lng], 16); markers[i].openPopup();
-  });
+  if (sounds.length > 1) map.fitBounds(L.latLngBounds(sounds.map(function (s) { return [s.lat, s.lng]; })), { padding: [40, 40] });
+  else if (sounds.length === 1) map.setView([sounds[0].lat, sounds[0].lng], 12);
+  else map.setView([46.5, 11], 5);
+  /* only one recording at a time, also across popups */
+  map.on('popupclose', function (e) { var a = e.popup.getElement() && e.popup.getElement().querySelector('audio'); if (a) a.pause(); });
 })();
