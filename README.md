@@ -59,6 +59,16 @@ Open the file on GitHub, click the pencil, change it, click **Commit changes**. 
 - `data/care-config.js` holds the drop box address. Empty = giving is closed, the soundscape still plays.
 - Setting up the drop box: see CARE-SETUP.md (delivered with the drop box code).
 
+## Security
+
+- Every page carries a security policy (the `Content-Security-Policy` line at the top of each HTML file).
+  It lets pages load only the site's own files, the map images from OpenStreetMap, and talk only to
+  GitHub (sound manager) and Google Apps Script (the Care drop box). Anything else is refused by the browser.
+- If you ever add an outside service (an embedded video, a form, analytics), it will be blocked until its
+  address is added to that line in every page. Ask before changing it.
+- No inline scripts: page code lives in `assets/js/`. `fresh-data.js` loads the Walk and Listen lists fresh on each visit.
+- HTTPS: Settings → Pages → Enforce HTTPS must stay ticked.
+
 ## Releasing the Listening Kit
 
 1. Upload the PDFs into `kit/pdf/it/` and `kit/pdf/en/` and write their paths in `pdf_it` / `pdf_en` in `data/worksheets.js`.

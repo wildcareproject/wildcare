@@ -59,6 +59,10 @@
     if (!chain && window.WC_pauseChain) window.WC_pauseChain();
   }, true);
 
+
+  /* hide the EU emblem box if the image is missing (replaces an inline handler blocked by the security policy) */
+  var eu = document.querySelector('.eu-box img');
+  if (eu) { var hideEU = function () { eu.parentNode.hidden = true; }; if (eu.complete && !eu.naturalWidth) hideEU(); else eu.addEventListener('error', hideEU); }
   window.WC = {
     base: base, sheets: sheets, families: families, byId: byId, famById: famById,
     pool: sheets.filter(function (s) { return !s.oliveros; }),
