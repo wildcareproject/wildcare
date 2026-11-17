@@ -45,7 +45,7 @@
   });
   nextBtn.addEventListener('click', function () { if (paused) setPaused(false); step(); });
   function setPaused(v) {
-    paused = v; pauseBtn.textContent = v ? 'Resume' : 'Pause';
+    paused = v; pauseBtn.textContent = v ? WC.T('Resume', 'Riprendi') : WC.T('Pause', 'Pausa');
     slots.forEach(function (s) { if (v) s.el.pause(); else if (s === slots[cur]) s.el.play(); });
     if (ctx) { v ? ctx.suspend() : ctx.resume(); }
   }

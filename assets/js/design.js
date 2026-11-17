@@ -4,13 +4,13 @@
   var WC = window.WC;
   var UNIT = 40, W = 800, H = 800, SNAP = 13, STEP = 10;
   var DEF = [
-    { id: 'lt1', fam: 'large-triangle',   shape: 'Large triangle',  unitPoly: [[0,0],[0,8],[4,4]] },
-    { id: 'lt2', fam: 'large-rectangle',  shape: 'Large triangle',  unitPoly: [[0,0],[8,0],[4,4]] },
-    { id: 'mt',  fam: 'large-square',     shape: 'Medium triangle', unitPoly: [[4,8],[8,8],[8,4]] },
-    { id: 'sq',  fam: 'small-square',     shape: 'Square',          unitPoly: [[2,6],[4,8],[6,6],[4,4]] },
-    { id: 'par', fam: 'narrow-rectangle', shape: 'Parallelogram',   unitPoly: [[6,2],[6,6],[8,4],[8,0]] },
-    { id: 'st1', fam: 'small-triangle',   shape: 'Small triangle',  unitPoly: [[4,4],[6,6],[6,2]] },
-    { id: 'st2', fam: 'small-rectangle',  shape: 'Small triangle',  unitPoly: [[0,8],[4,8],[2,6]] }
+    { id: 'lt1', fam: 'large-triangle',   shape: WC.T('Large triangle', 'Triangolo grande'),  unitPoly: [[0,0],[0,8],[4,4]] },
+    { id: 'lt2', fam: 'large-rectangle',  shape: WC.T('Large triangle', 'Triangolo grande'),  unitPoly: [[0,0],[8,0],[4,4]] },
+    { id: 'mt',  fam: 'large-square',     shape: WC.T('Medium triangle', 'Triangolo medio'), unitPoly: [[4,8],[8,8],[8,4]] },
+    { id: 'sq',  fam: 'small-square',     shape: WC.T('Square', 'Quadrato'),          unitPoly: [[2,6],[4,8],[6,6],[4,4]] },
+    { id: 'par', fam: 'narrow-rectangle', shape: WC.T('Parallelogram', 'Parallelogramma'),   unitPoly: [[6,2],[6,6],[8,4],[8,0]] },
+    { id: 'st1', fam: 'small-triangle',   shape: WC.T('Small triangle', 'Triangolo piccolo'),  unitPoly: [[4,4],[6,6],[6,2]] },
+    { id: 'st2', fam: 'small-rectangle',  shape: WC.T('Small triangle', 'Triangolo piccolo'),  unitPoly: [[0,8],[4,8],[2,6]] }
   ];
   DEF.forEach(function (d) {
     var cx = 0, cy = 0;
@@ -119,17 +119,17 @@
     listEl.innerHTML = DEF.map(function (d) {
       var p = pieces.filter(function (x) { return x.id === d.id; })[0];
       return '<li><button type="button" data-piece="' + d.id + '" aria-pressed="' + (cur === d.id) + '" aria-describedby="keys">' +
-        shapeIcon(d, 30) + '<span><span class="vh">' + WC.esc(WC.famById[d.fam].name) + ': </span>' + WC.esc(p.sheet.title_en) + '</span></button></li>';
+        shapeIcon(d, 30) + '<span><span class="vh">' + WC.esc(WC.famName(WC.famById[d.fam])) + ': </span>' + WC.esc(WC.title(p.sheet)) + '</span></button></li>';
     }).join('');
   }
   function renderDetail() {
-    if (!sel) { detail.innerHTML = '<p class="help" style="margin:0">Tap a piece, or choose one from the list, to read its sheet.</p>'; return; }
+    if (!sel) { detail.innerHTML = '<p class="help" style="margin:0">' + WC.T('Tap a piece, or choose one from the list, to read its sheet.', 'Tocca un pezzo, o sceglilo dall\'elenco, per leggerne la scheda.') + '</p>'; return; }
     var s = sel.sheet, f = WC.famById[sel.def.fam], links = WC.pdfLinks(s);
-    detail.innerHTML = '<p class="fam">' + WC.esc(sel.def.shape) + ', ' + WC.esc(f.name.toLowerCase()) + '</p>' +
-      '<h3>' + WC.esc(s.title_en) + '</h3><p class="line">' + WC.esc(s.line_en) + '</p>' +
-      '<p class="orig" lang="it"><b>' + WC.esc(s.title_it) + '.</b> ' + WC.esc(s.line_it) + '</p>' +
-      '<p class="orig">' + WC.esc(s.players) + (links ? '. ' + links : '.') + '</p>' +
-      '<button type="button" class="btn ghost" id="again">Draw another sheet for this piece</button>';
+    detail.innerHTML = '<p class="fam">' + WC.esc(sel.def.shape) + ', ' + WC.esc(WC.famName(f).toLowerCase()) + '</p>' +
+      '<h3>' + WC.esc(WC.title(s)) + '</h3><p class="line">' + WC.esc(WC.line(s)) + '</p>' +
+      (WC.lang === 'it' ? '' : '<p class="orig" lang="it"><b>' + WC.esc(s.title_it) + '.</b> ' + WC.esc(s.line_it) + '</p>') +
+      '<p class="orig">' + WC.esc(WC.players(s)) + (links ? '. ' + links : '.') + '</p>' +
+      '<button type="button" class="btn ghost" id="again">' + WC.T('Draw another sheet for this piece', 'Pesca un\'altra scheda per questo pezzo') + '</button>';
     document.getElementById('again').addEventListener('click', function () { redraw(); var b = document.getElementById('again'); if (b) b.focus(); });
   }
 
@@ -170,8 +170,8 @@
         var k = 28 / Math.max.apply(0, pts.map(function (q) { return Math.max(q[0] - mx, q[1] - my); }));
         pts.forEach(function (q, j) { var px = M + (q[0] - mx) * k, py = y - 14 + (q[1] - my) * k; j ? img.lineTo(px, py) : img.moveTo(px, py); }); img.closePath();
         x.fillStyle = d.color; x.fill(img); x.lineWidth = 1.5; x.strokeStyle = '#111111'; x.stroke(img);
-        x.fillStyle = '#111111'; x.font = '600 22px Prompt, Arial, sans-serif'; x.fillText(p.sheet.title_en, M + 46, y);
-        var w1 = x.measureText(p.sheet.title_en).width; x.font = '400 18px Prompt, Arial, sans-serif'; x.fillText(p.sheet.title_it, M + 46 + w1 + 14, y);
+        x.fillStyle = '#111111'; x.font = '600 22px Prompt, Arial, sans-serif'; x.fillText(WC.title(p.sheet), M + 46, y);
+        if (WC.lang !== 'it') { var w1 = x.measureText(p.sheet.title_en).width; x.font = '400 18px Prompt, Arial, sans-serif'; x.fillText(p.sheet.title_it, M + 46 + w1 + 14, y); }
       });
       x.font = '400 16px Prompt, Arial, sans-serif'; x.fillText('WILD:CARE Listening Kit, wildcareproject.org', M, LH - 34);
       c.toBlob(function (blob) {

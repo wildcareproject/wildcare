@@ -70,31 +70,32 @@
     renderNow(live);
   }
   var lastNow = '';
+  var LAYER_IT = { foreground: 'In primo piano', material: 'Come materia', sediment: 'Come sedimento', event: 'Come evento', ambience: 'Come ambiente', texture: 'Come trama' };
   function renderNow(live) {
     var seen = {};
     live = live.filter(function (e) { var k = e.id + '|' + e.layer; if (seen[k]) return false; seen[k] = true; return true; });
     var html = live.map(function (e) {
       var credit = e.credit ? ', ' + WC.esc(e.credit) : '';
-      return '<li><b>' + WC.esc(e.title || 'Untitled sound') + '</b>' + credit + '. <span class="as">As ' + e.layer + '.</span></li>';
+      return '<li><b>' + WC.esc(e.title || WC.T('Untitled sound', 'Suono senza titolo')) + '</b>' + credit + '. <span class="as">' + (WC.lang === 'it' ? LAYER_IT[e.layer] || e.layer : 'As ' + e.layer) + '.</span></li>';
     }).join('');
-    if (!html) html = corpus.length ? '<li>Silence, for a moment.</li>' : '<li>The soundscape is gathering its first sounds.</li>';
+    if (!html) html = corpus.length ? '<li>' + WC.T('Silence, for a moment.', 'Silenzio, per un momento.') + '</li>' : '<li>' + WC.T('The soundscape is gathering its first sounds.', 'Il paesaggio sonoro sta raccogliendo i suoi primi suoni.') + '</li>';
     if (html !== lastNow) { nowEl.innerHTML = html; lastNow = html; }
   }
   function start() {
     var AC = window.AudioContext || window.webkitAudioContext;
-    if (!AC) { statusEl.textContent = 'This browser cannot play the soundscape.'; return; }
+    if (!AC) { statusEl.textContent = WC.T('This browser cannot play the soundscape.', 'Questo browser non riesce a riprodurre il paesaggio sonoro.'); return; }
     ctx = ctx || new AC(); ctx.resume();
     if (!master) {
       var comp = ctx.createDynamicsCompressor(); comp.threshold.value = -14; comp.ratio.value = 3; comp.attack.value = 0.05; comp.release.value = 0.6;
       master = ctx.createGain(); master.gain.value = 0.8; master.connect(comp); comp.connect(ctx.destination);
     }
-    statusEl.textContent = 'Joining the soundscape.';
+    statusEl.textContent = WC.T('Joining the soundscape.', 'Entro nel paesaggio sonoro.');
     loadCorpus().then(function () {
       running = true; startBtn.hidden = true; stopBtn.hidden = false; statusEl.textContent = '';
       schedule(); tick = setInterval(schedule, 1000);
       refresh = setInterval(loadCorpus, 120000);
       stopBtn.focus();
-    }, function () { statusEl.textContent = 'The soundscape could not load. Try again in a moment.'; });
+    }, function () { statusEl.textContent = WC.T('The soundscape could not load. Try again in a moment.', 'Il paesaggio sonoro non si è caricato. Riprova tra un momento.'); });
   }
   function stop() {
     running = false; clearInterval(tick); clearInterval(refresh);

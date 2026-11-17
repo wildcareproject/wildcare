@@ -1,6 +1,14 @@
 /* WILD:CARE shared helpers. Loaded on every page after data/worksheets.js (where present). */
 (function () {
   var base = document.documentElement.getAttribute('data-base') || '';
+  /* language of the page: Italian pages live under /it/ and carry lang="it" */
+  var lang = document.documentElement.lang === 'it' ? 'it' : 'en';
+  function T(en, it) { return lang === 'it' ? it : en; }
+  var PLAYERS = { 'Solo': 'Da soli', 'Pair': 'In coppia', 'Group': 'In gruppo', 'Solo or group': 'Da soli o in gruppo' };
+  function title(s) { return lang === 'it' ? (s.title_it || s.title_en) : s.title_en; }
+  function line(s) { return lang === 'it' ? (s.line_it || s.line_en) : s.line_en; }
+  function players(s) { return lang === 'it' ? (PLAYERS[s.players] || s.players) : s.players; }
+  function famName(f) { return lang === 'it' ? (f.name_it || f.name) : f.name; }
   var sheets = window.WILDCARE_SHEETS || [];
   var families = window.WILDCARE_FAMILIES || [];
   var byId = {}, famById = {};
@@ -34,8 +42,8 @@
   }
   function pdfLinks(s) {
     var out = [];
-    if (s.pdf_en) out.push('<a href="' + esc(base + s.pdf_en) + '">English PDF</a>');
-    if (s.pdf_it) out.push('<a href="' + esc(base + s.pdf_it) + '" hreflang="it">Italian PDF</a>');
+    if (s.pdf_en) out.push('<a href="' + esc(base + s.pdf_en) + '" hreflang="en">' + T('English PDF', 'PDF in inglese') + '</a>');
+    if (s.pdf_it) out.push('<a href="' + esc(base + s.pdf_it) + '" hreflang="it">' + T('Italian PDF', 'PDF in italiano') + '</a>');
     return out.join(' <span aria-hidden="true">/</span> ');
   }
 
@@ -44,8 +52,8 @@
     var s = byId[el.getAttribute('data-sheet')];
     if (!s) return;
     var l = el.querySelector('.kit-line'), t = el.querySelector('.kit-title');
-    if (l && s.line_en) l.textContent = s.line_en;
-    if (t) t.textContent = s.title_en;
+    if (l && line(s)) l.textContent = line(s);
+    if (t) t.textContent = title(s);
   });
 
   /* one recording at a time (the Walk chain manages its own pair of players) */
@@ -63,7 +71,13 @@
   /* hide the EU emblem box if the image is missing (replaces an inline handler blocked by the security policy) */
   var eu = document.querySelector('.eu-box img');
   if (eu) { var hideEU = function () { eu.parentNode.hidden = true; }; if (eu.complete && !eu.naturalWidth) hideEU(); else eu.addEventListener('error', hideEU); }
+  /* the ITA | ENG switch keeps the drawn instruction (#id) when changing language */
+  document.querySelectorAll('.lang a').forEach(function (a) {
+    a.addEventListener('click', function () { if (location.hash) a.href = a.href.split('#')[0] + location.hash; });
+  });
+
   window.WC = {
+    lang: lang, T: T, title: title, line: line, players: players, famName: famName,
     base: base, sheets: sheets, families: families, byId: byId, famById: famById,
     pool: sheets.filter(function (s) { return !s.oliveros; }),
     esc: esc, shuffle: shuffle, folds: folds, pdfLinks: pdfLinks

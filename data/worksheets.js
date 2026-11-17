@@ -11,6 +11,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "large-triangle",
   "name": "Large yellow triangle",
+  "name_it": "Triangolo giallo grande",
   "paper": "giallo sole 53",
   "color": "#FEDC38",
   "fold": "triangle"
@@ -18,6 +19,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "small-triangle",
   "name": "Small pink triangle",
+  "name_it": "Triangolo rosa piccolo",
   "paper": "rosa 10",
   "color": "#ECC2D7",
   "fold": "triangle"
@@ -25,6 +27,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "large-rectangle",
   "name": "Large orange rectangle",
+  "name_it": "Rettangolo arancione grande",
   "paper": "giallo oro 52",
   "color": "#F89F25",
   "fold": "rect-large"
@@ -32,6 +35,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "narrow-rectangle",
   "name": "Narrow ivory rectangle",
+  "name_it": "Rettangolo avorio stretto",
   "paper": "avorio 110",
   "color": "#FDF2DA",
   "fold": "rect-narrow"
@@ -39,6 +43,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "small-square",
   "name": "Small light green square: maps",
+  "name_it": "Quadrato verde chiaro piccolo: mappe",
   "paper": "verde chiaro 09",
   "color": "#8CCEA9",
   "fold": "square"
@@ -46,6 +51,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "small-rectangle",
   "name": "Small light blue rectangle",
+  "name_it": "Rettangolo celeste piccolo",
   "paper": "celeste 08",
   "color": "#73BBC3",
   "fold": "rect-small"
@@ -53,6 +59,7 @@ window.WILDCARE_FAMILIES = [
  {
   "id": "large-square",
   "name": "Large green square",
+  "name_it": "Quadrato verde grande",
   "paper": "pistacchio 54",
   "color": "#7BC147",
   "fold": "square"

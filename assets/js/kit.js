@@ -7,13 +7,13 @@
     if (!list.length) return;
     html += '<section class="family" aria-labelledby="fam-' + f.id + '">' +
       '<div class="family-head"><span class="swatch" style="--paper:' + f.color + '" aria-hidden="true"></span>' +
-      '<h2 id="fam-' + f.id + '">' + WC.esc(f.name) + '</h2></div><ul class="grid-tiles">';
+      '<h2 id="fam-' + f.id + '">' + WC.esc(WC.famName(f)) + '</h2></div><ul class="grid-tiles">';
     list.forEach(function (s) {
-      var links = WC.pdfLinks(s) || '[PDF links at release]';
+      var links = WC.pdfLinks(s) || WC.T('[PDF links at release]', '[link ai PDF all\'uscita]');
       html += '<li id="' + s.id + '"><div class="sheet tile f-' + f.fold + '" style="--paper:' + f.color + '" aria-hidden="true">' +
-        WC.folds(f.fold) + '<div class="along">' + WC.esc(s.title_en) + '</div></div>' +
-        '<h3>' + WC.esc(s.title_en) + '</h3><p class="it" lang="it">' + WC.esc(s.title_it) + '</p>' +
-        '<p class="meta">' + WC.esc(s.players) + '. ' + links + '</p></li>';
+        WC.folds(f.fold) + '<div class="along">' + WC.esc(WC.title(s)) + '</div></div>' +
+        '<h3>' + WC.esc(WC.title(s)) + '</h3>' + (WC.lang === 'it' ? '' : '<p class="it" lang="it">' + WC.esc(s.title_it) + '</p>') +
+        '<p class="meta">' + WC.esc(WC.players(s)) + '. ' + links + '</p></li>';
     });
     html += '</ul></section>';
   });

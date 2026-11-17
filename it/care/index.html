@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="it" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tile.openstreetmap.org; media-src 'self' blob:; font-src 'self'; connect-src 'self' https://api.github.com https://script.google.com https://script.googleusercontent.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Care. WILD:CARE</title>
+<meta name="description" content="Un paesaggio sonoro che suona sempre, fatto dei suoni che le persone gli donano.">
+
+<meta property="og:title" content="Care. WILD:CARE">
+<meta property="og:description" content="Un paesaggio sonoro che suona sempre, fatto dei suoni che le persone gli donano.">
+<link rel="alternate" hreflang="en" href="https://wildcareproject.org/care/">
+<link rel="alternate" hreflang="it" href="https://wildcareproject.org/it/care/">
+<link rel="icon" href="../../assets/img/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/prompt-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css?v=5398b3a0">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<header class="wrap site-head">
+<a class="logo" href="../"><img src="../../assets/img/wildcare-logo.png" alt="WILD:CARE, pagina iniziale" width="70" height="52"></a>
+<nav class="nav" aria-label="Principale"><a class="dim" href="../walk/">Walk</a><a class="dim" href="../inspire/">Inspire</a><a class="dim" href="../listen/">Listen</a><a class="dim" href="../design/">Design</a><a class="dim" href="../care/" aria-current="page">Care</a><span class="sep" aria-hidden="true"></span><a href="../method/">Metodo</a><a href="../traces/">Tracce</a><a href="../partners/">Partner</a></nav>
+<p class="lang"><b>ITA<span class="vh"> (lingua attuale)</span></b><span aria-hidden="true">|</span><a href="../../care/" hreflang="en" lang="en" aria-label="English">ENG</a></p>
+</header>
+<hr class="fold">
+<main id="main" class="wrap">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="8" cy="10.5" r="5"/><circle cx="13" cy="10.5" r="5"/></svg><span>Care</span></p><div class="content">
+<h1 class="page-title"><span class="letter" aria-hidden="true">C</span><span class="name">Care</span><span class="verb">dare</span></h1>
+<figure class="kit-quote " data-sheet="a-sound-as-a-gift"><blockquote style="margin:0"><p class="kit-line">La maggior parte dei suoni non esiste per nessuno in particolare. Questo sì.</p></blockquote><figcaption class="kit-src">da <span class="kit-title">Un suono come regalo</span>, Listening Kit</figcaption></figure>
+<p class="measure">Un paesaggio sonoro che suona sempre, fatto dei suoni che le persone gli donano. Chi ascolta nello stesso momento sente la stessa cosa. I suoni nuovi arrivano in primo piano; con il tempo affondano, più lenti e più scuri, nel fondo del brano. Qui sotto è sempre scritto che cosa sta suonando.</p>
+<div class="player care-player">
+ <div class="btn-row"><button type="button" class="btn" id="care-start">Ascolta</button><button type="button" class="btn ghost" id="care-stop" hidden>Ferma</button></div>
+ <p id="care-status" class="help" aria-live="polite"></p>
+ <h2 class="vh">Ora suona</h2>
+ <ul class="care-now" id="care-now" aria-live="off"></ul>
+</div>
+</div></section>
+<hr class="fold">
+<section class="row" id="give"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><circle cx="8" cy="10.5" r="5"/><circle cx="13" cy="10.5" r="5"/></svg><span>Dona un suono</span></p><div class="content">
+<div class="give-soon" hidden><p class="soon">Apre presto <span>Da questa pagina potrai donare un suono.</span></p></div>
+<div class="give-open">
+ <p class="measure">Registra fino a 30 secondi, oppure scegli un file in un qualsiasi formato audio o video comune: restano i primi 30 secondi di suono. Il suono entra nel paesaggio sonoro di tutti circa mezz'ora dopo l'invio.</p>
+ <div class="btn-row"><button type="button" class="btn" id="give-rec">Registra</button>
+ <label class="btn ghost filebtn">Scegli un file<input type="file" id="give-file" accept="audio/*,video/*,.mp3,.wav,.wave,.bwf,.rf64,.aif,.aiff,.aifc,.caf,.flac,.ogg,.oga,.opus,.m4a,.m4b,.aac,.adts,.alac,.mp4,.mov,.m4v,.3gp,.3ga,.3g2,.webm,.weba,.mka,.mkv,.amr,.awb,.wma,.asf" class="vh"></label></div>
+ <p id="give-msg" class="help" aria-live="polite"></p>
+ <div id="give-ready" hidden>
+  <audio id="give-preview" controls></audio>
+  <p id="give-heard" class="measure"></p>
+  <p class="field"><label for="give-title">Dai un nome a questo suono <span>(facoltativo)</span></label><input id="give-title" maxlength="40" autocomplete="off"></p>
+  <p class="field"><label for="give-credit">Il tuo nome, come deve comparire <span>(facoltativo)</span></label><input id="give-credit" maxlength="40" autocomplete="off"></p>
+  <div class="consent-box" id="give-consent-box"><p class="check"><input type="checkbox" id="give-consent" aria-describedby="give-consent-alert" required><label for="give-consent"><b>Prima di donare.</b> Ho registrato io questo suono o ho il diritto di condividerlo, e accetto che entri a far parte di un paesaggio sonoro pubblico su questo sito. Chiunque si senta nella registrazione ha dato il proprio consenso.</label></p><p class="consent-alert" id="give-consent-alert" role="alert" hidden>Spunta questa casella per donare il tuo suono.</p></div>
+  <button type="button" class="btn" id="give-send">Dona questo suono</button>
+ </div>
+</div>
+</div></section>
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="eu-box"><img src="../../assets/eu/cofinanziato-dall-unione-europea.png" alt="Cofinanziato dall'Unione europea" width="250" height="52"></div>
+<div class="legal"><p>Cofinanziato dall'Unione europea. Le opinioni espresse appartengono, tuttavia, al solo o ai soli autori e non riflettono necessariamente le opinioni dell'Unione europea o dell'Agenzia Italiana per la Gioventù. Né l'Unione europea né l'autorità che concede il finanziamento possono esserne ritenute responsabili.</p>
+<p>Erasmus+ KA210-YOU. Convenzione di sovvenzione 2025-2-IT03-KA210-YOU-000375840.</p>
+<p class="links"><a href="../partners/#contact">Contatti</a></p></div>
+</div></footer>
+<script src="../../data/worksheets.js?v=ed471e8d"></script><script src="../../data/care-config.js?v=969fd798"></script><script src="../../assets/vendor/lamejs-1.2.1/lame.min.js?v=00d43c06"></script><script src="../../assets/js/site.js?v=9925053a"></script><script src="../../assets/js/care-score.js?v=e45059d5"></script><script src="../../assets/js/care.js?v=43f1b73a"></script><script src="../../assets/js/audio-decode.js?v=c30160ec"></script><script src="../../assets/js/care-give.js?v=151872f7"></script>
+</body>
+</html>

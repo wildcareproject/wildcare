@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="it" data-base="../../">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://tile.openstreetmap.org; media-src 'self' blob:; font-src 'self'; connect-src 'self' https://api.github.com https://script.google.com https://script.googleusercontent.com; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design. WILD:CARE</title>
+<meta name="description" content="Componi una partitura grafica con sette pezzi del Listening Kit di WILD:CARE.">
+
+<meta property="og:title" content="Design. WILD:CARE">
+<meta property="og:description" content="Componi una partitura grafica con sette pezzi del Listening Kit di WILD:CARE.">
+<link rel="alternate" hreflang="en" href="https://wildcareproject.org/design/">
+<link rel="alternate" hreflang="it" href="https://wildcareproject.org/it/design/">
+<link rel="icon" href="../../assets/img/favicon-32.png" type="image/png">
+<link rel="apple-touch-icon" href="../../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../../assets/fonts/prompt-light.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css?v=5398b3a0">
+</head>
+<body>
+<a class="skip" href="#main">Vai al contenuto</a>
+<header class="wrap site-head">
+<a class="logo" href="../"><img src="../../assets/img/wildcare-logo.png" alt="WILD:CARE, pagina iniziale" width="70" height="52"></a>
+<nav class="nav" aria-label="Principale"><a class="dim" href="../walk/">Walk</a><a class="dim" href="../inspire/">Inspire</a><a class="dim" href="../listen/">Listen</a><a class="dim" href="../design/" aria-current="page">Design</a><a class="dim" href="../care/">Care</a><span class="sep" aria-hidden="true"></span><a href="../method/">Metodo</a><a href="../traces/">Tracce</a><a href="../partners/">Partner</a></nav>
+<p class="lang"><b>ITA<span class="vh"> (lingua attuale)</span></b><span aria-hidden="true">|</span><a href="../../design/" hreflang="en" lang="en" aria-label="English">ENG</a></p>
+</header>
+<hr class="fold">
+<main id="main" class="wrap">
+<section class="row"><p class="label"><svg width="20" height="20" viewBox="0 0 20 21" fill="none" stroke="#111111" stroke-width="1.5" aria-hidden="true" focusable="false"><path d="M3 17L10 3l7 14z"/><path d="M10 3v14" stroke-dasharray="2 2"/></svg><span>Design</span></p><div class="content">
+<h1 class="page-title"><span class="letter" aria-hidden="true">D</span><span class="name">Design</span><span class="verb">fare</span></h1>
+<figure class="kit-quote " data-sheet="a-map-with-no-north"><blockquote style="margin:0"><p class="kit-line">Una griglia. Una freccia del nord. Una legenda. Una vista dall'alto. Non sono la verità.</p></blockquote><figcaption class="kit-src">da <span class="kit-title">Una mappa senza nord</span>, Listening Kit</figcaption></figure>
+<p class="measure">Sette pezzi, sette schede. Ogni pezzo pesca una scheda dalla sua famiglia nel Kit. Disponili in qualsiasi ordine: la partitura che lasci si può leggere in molti modi. Tocca un pezzo per leggerne la scheda, e salva il risultato come immagine.</p>
+</div></section>
+<div class="design">
+ <div>
+  <canvas id="board" class="board" role="img" aria-label="Tavola del tangram con sette pezzi colorati. Con l'elenco dei pezzi qui accanto puoi spostarli dalla tastiera."></canvas>
+  <div class="btn-row" style="margin-top:14px"><button type="button" class="btn ghost" id="rotate" data-needs-sel disabled>Ruota</button><button type="button" class="btn ghost" id="flip" data-needs-sel disabled>Capovolgi</button><button type="button" class="btn ghost" id="scatter">Sparpaglia i pezzi</button><button type="button" class="btn" id="save">Salva come immagine</button></div>
+ </div>
+ <div>
+  <h2 style="font-size:20px">I pezzi</h2>
+  <ul class="pieces" id="pieces"></ul>
+  <p class="help" id="keys">Con la tastiera: Tab per raggiungere un pezzo, le frecce per spostarlo (con Maiuscolo per passi più lunghi), R lo ruota, F lo capovolge. Tocca due volte un pezzo sulla tavola per ruotarlo.</p>
+  <div class="detail" id="detail" aria-live="polite"></div>
+ </div>
+</div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<div class="eu-box"><img src="../../assets/eu/cofinanziato-dall-unione-europea.png" alt="Cofinanziato dall'Unione europea" width="250" height="52"></div>
+<div class="legal"><p>Cofinanziato dall'Unione europea. Le opinioni espresse appartengono, tuttavia, al solo o ai soli autori e non riflettono necessariamente le opinioni dell'Unione europea o dell'Agenzia Italiana per la Gioventù. Né l'Unione europea né l'autorità che concede il finanziamento possono esserne ritenute responsabili.</p>
+<p>Erasmus+ KA210-YOU. Convenzione di sovvenzione 2025-2-IT03-KA210-YOU-000375840.</p>
+<p class="links"><a href="../partners/#contact">Contatti</a></p></div>
+</div></footer>
+<script src="../../data/worksheets.js?v=ed471e8d"></script><script src="../../assets/js/site.js?v=9925053a"></script><script src="../../assets/js/design.js?v=227f383c"></script>
+</body>
+</html>

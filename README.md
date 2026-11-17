@@ -9,7 +9,9 @@ Every change made through GitHub is kept as a version and can be undone.
 |---|---|
 | `index.html` | Home |
 | `walk/` `inspire/` `listen/` `design/` `care/` | The five dimensions |
-| `method/` `pilots/` `partners/` | Information pages (contact is on `partners/`) |
+| `method/` `traces/` `partners/` | Information pages (contact is on `partners/`). `traces/` is the timeline of the project with photos; the old address `pilots/` forwards to it |
+| `it/` | **The Italian site.** Same folders as the English one (`it/walk/`, `it/traces/`…). Each page has an ITA \| ENG switch at the top right that opens the same page in the other language |
+| `assets/img/photos/` | Photos of the timeline, resized to 1600 px, location data removed |
 | `kit/` | The Listening Kit. **Built but not linked** and hidden from search engines until release |
 | `data/worksheets.js` | All 49 worksheets: titles, the one line shown on the site, players, PDF paths |
 | `data/sounds.js` | The LISTEN sound map (managed from `manage/`) |
@@ -22,15 +24,24 @@ Every change made through GitHub is kept as a version and can be undone.
 
 Everything in **[square brackets]** is missing information. On GitHub, press `t`, or use the search box
 of the repository with `[`, to find them. Current list:
-- `partners/index.html`: three partner websites
-- `pilots/index.html`: Berlin dates and places
+- `partners/index.html` and `it/partners/index.html`: three partner websites
+- `traces/index.html` and `it/traces/index.html`: Berlin dates and places, final conference date and place
 - `walk/index.html`, `care/index.html`: opening dates, the Care contribution link
 - `kit/index.html`: card deck date, WILD PROBE link
 - `data/sounds.js`: a written description for every recording (required for hearing diversity)
 
 **EU emblem.** Download the official "Co-funded by the European Union" emblem (English, PNG, horizontal)
 from the European Commission's visual identity page and upload it as
-`assets/eu/co-funded-by-the-eu.png`. Until then the footer shows the funding text only.
+`assets/eu/co-funded-by-the-eu.png`. Do the same with the Italian version ("Cofinanziato dall'Unione europea")
+as `assets/eu/cofinanziato-dall-unione-europea.png`, used by the Italian pages. Until then the footer shows the funding text only.
+
+## Two languages
+
+English pages are at the root, Italian pages under `it/`. **When you change a text, change it in both files**
+(for example `method/index.html` and `it/method/index.html`). The worksheet lines and titles come from
+`data/worksheets.js` in both languages (`line_it`, `title_it`; `name_it` for the paper families).
+Sound names and places in Walk and Listen are written once, in the manager: names that work in both languages
+(Genova, Venezia, Helsinki) read best on both sites.
 
 ## Sounds: the sound manager
 
@@ -98,4 +109,5 @@ Open the file on GitHub, click the pencil, change it, click **Commit changes**. 
 ## Privacy
 
 No cookies, no analytics, no external fonts. The only external request is the OpenStreetMap map on LISTEN,
-and it loads only after the visitor presses "Show the map".
+which loads as soon as the Listen page opens (the visitor's address reaches OpenStreetMap's servers).
+Photos on the Traces page carry no location data.

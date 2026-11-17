@@ -10,8 +10,9 @@
   var MAX = 30, SR = 44100, result = null, mr = null, chunks = [], timer = null;
 
   function say(t) { msg.textContent = t; }
+  var T = window.WC.T;
   function process(decoded) {
-    say('Preparing the sound.');
+    say(T('Preparing the sound.', 'Preparo il suono.'));
     return Promise.resolve(decoded).then(function (buf) {
       var ch = buf.ch.slice(0, 2), n = ch[0].length, i, c, nc = ch.length;
       var mono = new Float32Array(n); for (c = 0; c < nc; c++) for (i = 0; i < n; i++) mono[i] += ch[c][i] / nc;
@@ -51,41 +52,42 @@
       return { blob: new Blob(parts, { type: 'audio/mpeg' }), dur: Math.round(dur * 10) / 10, category: category };
     });
   }
+  var WC_IT = window.WC.lang === 'it';
   var WORDS = {
-    event: 'It will be heard as an event: it comes back now and then, never at predictable moments.',
-    ambience: 'It will be heard as an ambience: near-raw, drifting slowly in and out.',
-    texture: 'It will be heard as a texture: fragments of it, filtered a little differently each time.'
+    event: T('It will be heard as an event: it comes back now and then, never at predictable moments.', 'Suonerà come un evento: torna ogni tanto, in momenti che nessuno può prevedere.'),
+    ambience: T('It will be heard as an ambience: near-raw, drifting slowly in and out.', 'Suonerà come un ambiente: quasi grezzo, entra ed esce lentamente.'),
+    texture: T('It will be heard as a texture: fragments of it, filtered a little differently each time.', 'Suonerà come una trama: a frammenti, filtrati ogni volta in modo un po\' diverso.')
   };
   function ready_(r) {
     result = r; preview.src = URL.createObjectURL(r.blob); ready.hidden = false;
-    heard.textContent = r.dur + ' seconds. ' + WORDS[r.category] + ' For its first day it also sounds in the foreground, so you can find it; then it slowly sinks into the soundscape.';
+    heard.textContent = (WC_IT ? String(r.dur).replace('.', ',') + ' secondi. ' : r.dur + ' seconds. ') + WORDS[r.category] + T(' For its first day it also sounds in the foreground, so you can find it; then it slowly sinks into the soundscape.', ' Per il primo giorno suona anche in primo piano, così puoi ritrovarlo; poi affonda lentamente nel paesaggio sonoro.');
     say(''); send.disabled = false; clearConsentAlert();
   }
   function fail(err) {
     var code = err && (err.code || err.message), name = err && err.code && err.message ? err.message : '';
-    if (code === 'silent') say('This recording seems to be silent. Try again a little closer to the sound.');
-    else if (code === 'size') say('This file is too large to open here. Trim it to the part you want to give, or record the sound directly.');
-    else say('This file could not be read' + (name ? ' (' + name + ')' : '') + '. Most sound and video files work; if this one does not, save it as MP3, WAV or M4A and try again.');
+    if (code === 'silent') say(T('This recording seems to be silent. Try again a little closer to the sound.', 'Questa registrazione sembra silenziosa. Riprova un po\' più vicino al suono.'));
+    else if (code === 'size') say(T('This file is too large to open here. Trim it to the part you want to give, or record the sound directly.', 'Questo file è troppo grande per aprirlo qui. Taglialo alla parte che vuoi donare, oppure registra direttamente il suono.'));
+    else say(T('This file could not be read', 'Non riesco a leggere questo file') + (name ? ' (' + name + ')' : '') + T('. Most sound and video files work; if this one does not, save it as MP3, WAV or M4A and try again.', '. Quasi tutti i file audio e video funzionano; se questo no, salvalo come MP3, WAV o M4A e riprova.'));
   }
   file.addEventListener('change', function () {
     var f = file.files[0]; if (!f) return;
-    say('Reading the file.'); ready.hidden = true;
+    say(T('Reading the file.', 'Leggo il file.')); ready.hidden = true;
     WCDecode.decode(f, { maxSeconds: 120, maxBytes: 80 * 1024 * 1024 }).then(process).then(ready_, fail);
   });
   rec.addEventListener('click', function () {
     if (mr && mr.state === 'recording') { mr.stop(); return; }
-    if (!navigator.mediaDevices || !window.MediaRecorder) { say('This browser cannot record. Choose a file instead.'); return; }
+    if (!navigator.mediaDevices || !window.MediaRecorder) { say(T('This browser cannot record. Choose a file instead.', 'Questo browser non può registrare. Scegli invece un file.')); return; }
     navigator.mediaDevices.getUserMedia({ audio: { echoCancellation: false, noiseSuppression: false, autoGainControl: false } }).then(function (stream) {
       chunks = []; mr = new MediaRecorder(stream);
       mr.ondataavailable = function (ev) { if (ev.data.size) chunks.push(ev.data); };
       mr.onstop = function () {
         clearInterval(timer); stream.getTracks().forEach(function (t) { t.stop(); });
-        rec.textContent = 'Record again';
+        rec.textContent = T('Record again', 'Registra di nuovo');
         WCDecode.decode(new Blob(chunks, { type: mr.mimeType }), { maxSeconds: 120 }).then(process).then(ready_, fail);
       };
-      mr.start(); var left = MAX; rec.textContent = 'Stop (' + left + ')';
-      timer = setInterval(function () { left--; rec.textContent = 'Stop (' + left + ')'; if (left <= 0) mr.stop(); }, 1000);
-    }, function () { say('The microphone is not available. You can choose a file instead.'); });
+      mr.start(); var left = MAX, STOP = T('Stop', 'Ferma'); rec.textContent = STOP + ' (' + left + ')';
+      timer = setInterval(function () { left--; rec.textContent = STOP + ' (' + left + ')'; if (left <= 0) mr.stop(); }, 1000);
+    }, function () { say(T('The microphone is not available. You can choose a file instead.', 'Il microfono non è disponibile. Puoi scegliere invece un file.')); });
   });
   var consentBox = document.getElementById('give-consent-box'), consentAlert = document.getElementById('give-consent-alert');
   function clearConsentAlert() { consentBox.classList.remove('alert'); consent.removeAttribute('aria-invalid'); consentAlert.hidden = true; }
@@ -98,7 +100,7 @@
       consentBox.scrollIntoView({ behavior: 'smooth', block: 'center' }); consent.focus({ preventScroll: true });
       return;
     }
-    send.disabled = true; say('Sending.');
+    send.disabled = true; say(T('Sending.', 'Invio in corso.'));
     var fr = new FileReader();
     fr.onload = function () {
       var b64 = String(fr.result).split(',')[1];
@@ -106,10 +108,10 @@
         body: JSON.stringify({ mp3: b64, title: title.value.trim().slice(0, 40), credit: credit.value.trim().slice(0, 40), category: result.category, dur: result.dur }) })
         .then(function (r) { return r.json(); })
         .then(function (d) {
-          if (d.ok) { say('Thank you. Your sound joins the soundscape in about half an hour.'); ready.hidden = true; result = null; title.value = ''; credit.value = ''; consent.checked = false; clearConsentAlert(); }
-          else if (d.error === 'busy') { say('Many sounds have arrived this hour. Try again a little later.'); send.disabled = false; }
-          else { say('The sound could not be sent. Try again in a moment.'); send.disabled = false; }
-        }, function () { say('The sound could not be sent. Check the connection and try again.'); send.disabled = false; });
+          if (d.ok) { say(T('Thank you. Your sound joins the soundscape in about half an hour.', 'Grazie. Il tuo suono entra nel paesaggio sonoro tra circa mezz\'ora.')); ready.hidden = true; result = null; title.value = ''; credit.value = ''; consent.checked = false; clearConsentAlert(); }
+          else if (d.error === 'busy') { say(T('Many sounds have arrived this hour. Try again a little later.', 'In quest\'ora sono arrivati molti suoni. Riprova un po\' più tardi.')); send.disabled = false; }
+          else { say(T('The sound could not be sent. Try again in a moment.', 'Non è stato possibile inviare il suono. Riprova tra un momento.')); send.disabled = false; }
+        }, function () { say(T('The sound could not be sent. Check the connection and try again.', 'Non è stato possibile inviare il suono. Controlla la connessione e riprova.')); send.disabled = false; });
     };
     fr.readAsDataURL(result.blob);
   });
